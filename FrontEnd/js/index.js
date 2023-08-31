@@ -18,14 +18,7 @@ divGallery.appendChild (projetElement);
 projetElement.appendChild (imageElement);
 projetElement.appendChild (titleElement);
 projetElement.appendChild (categoryElement);
-}};
-
-
-//préparation des balises du DOM pour les catégories
-
-
-//liaisons pour affichage CATEGORIES sur la page web
-
+}}
 
 // récupération des CATEGORIES sur le localhost du BackEnd 
 fetch("http://localhost:5678/api/categories") 
