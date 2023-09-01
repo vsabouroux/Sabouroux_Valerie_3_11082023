@@ -192,7 +192,7 @@ nav a:focus {
   text-decoration: none;
 }
 /** fin lien page login**/
-/***integration page loginnouvelle page css à créer ?? ***/
+/***integration page login  ***/
 #login h2 {
   display: flex;
   flex-direction: column;
@@ -240,11 +240,13 @@ nav a:focus {
   margin-bottom: 0.5em;
 }
 /** Ajout boutons de filtres**/
-.filtres,
-button {
+.filtres {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.filtres button {
   border-radius: 20px;
   border-color: #1d6154;
   border-width: 1px;
@@ -255,7 +257,12 @@ button {
   padding: 5px 10px;
   margin: 5px;
 }
-.btn-tous:hover {
+
+.filtres button:hover {
+  background-color: #1d6154;
+  color: white;
+}
+/* .btn-tous:hover {
   background-color: #1d6154;
   color: white;
 }
@@ -270,7 +277,7 @@ button {
 .btn-hr:hover {
   background-color: #1d6154;
   color: white;
-}
+} */
 #portfolio h2 {
   text-align: center;
   margin-bottom: 1em;
