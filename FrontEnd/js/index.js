@@ -1,9 +1,8 @@
-// récupération des WORKS sur le localhost du BackEnd
+// récupération des WORKS sur le localhost du BackEnd dans lesquels il y a la catégorie embarquée
 fetch("http://localhost:5678/api/works")
   .then((response) => response.json())
-  .then((projets) => {
-    // Traitement des données récupérées ici
-    console.log(projets);
+  .then((projets, categories) => {
+    console.log(projets, categories);
     genererProjets(projets);
   })
   .catch((error) => {
@@ -12,6 +11,9 @@ fetch("http://localhost:5678/api/works")
       error
     );
   });
+
+//utilisation await et async pour récupérer les catégories embarquées ds works et attendre les traitements à venir
+
 //Chaque projet "embarque" la CATEGORIE donc idée d'inserer dans la boucle for of l'écoute du clic
 //Gestion des boutons
 
@@ -29,21 +31,78 @@ function genererProjets(projets) {
     imageElement.src = projet.imageUrl;
     const titleElement = document.createElement("h3");
     titleElement.innerText = projet.title;
-    const categoryElement = document.createElement("button");
-    categoryElement.innerText = projet.category.name;
+    // const categoryElement = document.createElement("p");
+    // categoryElement.innerText = projet.category.name;
+    //const categoryElement = document.createElement("button"); //ce bouton placé ici  affiche autant de boutons que de projets et donc qd on appelle la fonction tous les boutons associés aux projets s'affichent !
+    //categoryElement.innerText = projet.category.name;
 
     // liaisons pour affichage sur la page web
     divGallery.appendChild(projetElement);
     projetElement.appendChild(imageElement);
     projetElement.appendChild(titleElement);
+    // projetElement.appendChild(categoryElement);
+    //divFiltres.appendChild(categoryElement);
+
+    // création boutons catégories + boutons "Tous"
+
+    const divFiltres = document.querySelector(".filtres");
+    divFiltres.innerHTML = "";
+    const tousBouttonElement = document.createElement("button");
+    tousBouttonElement.innerText = "Tous";
+    const categoryElement = document.createElement("button");
+    categoryElement.innerText = projet.category.name;
+
+    // liaisons pour affichage sur la page web
+    divFiltres.appendChild(tousBouttonElement);
     divFiltres.appendChild(categoryElement);
   }
 }
-//creation des boutons
-const divFiltres = document.querySelector(".filtres");
 
-const boutonTous = document.querySelector(".filter_active");
-boutonTous.addEventListener("click", function () {
-  genererProjets(projets);
-});
-// fonction .filter pour les autres boutons
+// Création d'une fonction "projetsFiltres" projets filtrés parmi les projets
+// function genererProjetsFiltres(projets, categorieFiltree) {
+
+//function genererProjetsFiltres(projets, categorieFiltree) {
+// const divFiltres = document.querySelector(".filtres");
+// divFiltres.innerHTML = "";
+
+// const categories = [fetch("http://localhost:5678/api/categories")];
+///  for (const projet of projets) {
+//création des balises
+//  const category = projet.category.name;
+//  if (!categories.includes(category)) {
+//    categories.push(category);
+//  }
+// }
+
+// liaisons avec le DOM
+//divFiltres.appendChild(projetFiltre);
+
+//projetFiltre.appendChild(boutonsElement);
+//}
+//Gestion des boutons. Il faut comprendre quel est le bouton que l'utilisateur a cliqué pour pouvoir filtrer les projets en fonction du bouton
+// et création du bouton "Tous"
+//const tousButton = document.createElement("button");
+//tousButton.innerText = "Tous";
+//tousButton.addEventListener("click", () => {
+// genererProjets(projets);
+//  divFiltres.appendChild(tousButton);
+//});
+
+//for (const category of categories) {
+// const boutonElement = document.createElement("button");
+// boutonElement.innerText = category;
+// boutonElement.addEventListener("click", () => {
+//   const projetsFiltres = projets.filter(
+//    (projet) => projet.category.name === category
+//   );
+//   genererProjets(projetsFiltres); // Afficher les projets filtrés
+// });
+//  divFiltres.appendChild(boutonElement);
+//}
+
+//} else {
+//   boutonsElement.addEventListener("button", function(event) => {
+//    const projetsFiltres = projets.filter (projet) {
+//      return projet.category === category.name;
+//   }}
+//     genererProjetsFiltres(projets)
