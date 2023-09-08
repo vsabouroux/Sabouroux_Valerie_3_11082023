@@ -1,9 +1,13 @@
+let categories = [];
+
 // récupération des WORKS sur le localhost du BackEnd dans lesquels il y a la catégorie embarquée
 fetch("http://localhost:5678/api/works")
   .then((response) => response.json())
-  .then((projets, categories) => {
-    console.log(projets, categories);
+  .then((projets) => {
+    console.log(projets);
     genererProjets(projets);
+    console.log(categories);
+    genererCategories(categories, works);
   })
   .catch((error) => {
     console.error(
@@ -45,20 +49,59 @@ function genererProjets(projets) {
 
     // création boutons catégories + boutons "Tous"
 
-    const divFiltres = document.querySelector(".filtres");
-    divFiltres.innerHTML = "";
-    const tousBouttonElement = document.createElement("button");
-    tousBouttonElement.innerText = "Tous";
-    const categoryElement = document.createElement("button");
-    categoryElement.innerText = projet.category.name;
-
-    // liaisons pour affichage sur la page web
-    divFiltres.appendChild(tousBouttonElement);
-    divFiltres.appendChild(categoryElement);
+    // const divFiltres = document.querySelector(".filtres");
+    // divFiltres.innerHTML = "";
+    // const tousBouttonElement = document.createElement("button");
+    // tousBouttonElement.innerText = "Tous";
+    // const category1Element = document.createElement("button");
+    // category1Element.innerText = "Objets";
+    // const category2Element = document.createElement("button");
+    // category2Element.innerText = "Appartements";
+    // const category3Element = document.createElement("button");
+    // category3Element.innerText = "Hôtels & Restaurants";
+    // //const categoryElement = document.createElement("button");
+    // //categoryElement.innerText = projet.category.name;
+    // // liaisons pour affichage sur la page web
+    // divFiltres.appendChild(tousBouttonElement);
+    // divFiltres.appendChild(category1Element);
+    // divFiltres.appendChild(category2Element);
+    // divFiltres.appendChild(category3Element);
+    // divFiltres.appendChild(categoryElement);
+    categories.push({
+      id: projet.category.id,
+      name: projet.category.name,
+    });
   }
 }
 
-// Création d'une fonction "projetsFiltres" projets filtrés parmi les projets
+function genererCategories(categories, works) {
+  for (const categorie of categories) {
+    console.log(categorie.name);
+    //Créer element "element"
+    // element.addEventListener (filterWorks())
+  }
+}
+
+function filterWorks() {
+  // genererProjets(projets);
+}
+
+// // Récupération de divFiltres et des boutons
+// const divFiltres = document.querySelector(".filtres");
+// const boutonTous = document.querySelector("tous");
+// const boutonCategorie1 = document.querySelector("Objets");
+// const boutonCategorie2 = document.getElementById("Appartements");
+// const boutonCategorie3 = document.getElementById("Hôtels & Restaurants");
+
+// // création fonction  avec fonction "filter" par catégorie puis
+// function filtrerParCategorie(categorie) {
+//   const projetsFiltres = projets.filter(projet => {
+//     return categorie
+//   });
+// }
+// Ecoute boutons  et genererProjetsFiltres
+
+//// Création d'une fonction "projetsFiltres" projets filtrés parmi les projets
 // function genererProjetsFiltres(projets, categorieFiltree) {
 
 //function genererProjetsFiltres(projets, categorieFiltree) {
