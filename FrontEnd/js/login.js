@@ -1,7 +1,14 @@
-// une fois que l'API aura reçu les identifiants de l'utilisateur, je veux stocker en local ces données pour les gérer + userID+token
-// window.localStorage.setItem("email", "motdepasse", "userId", "token");
-/**je veux récupérer le nom et l'email du user donc
- * je dois "écouter" qd celui-ci clique ur le bouton submit ou qu'il fait entrée ds le champ du mdp***/
+//Récupération du token pour stockage dans le localStorage (pour maintenir l'authentification de l'utilisateur pour qu'il puisse continuer à interagir sur le site)
+//c'est le serveur qui crée ce token après envoi des infos par l'utilisateur
+const leToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4";
+// Stocker le token dans le localStorage
+localStorage.setItem("leToken", leToken);
+//Vérification si le token a été correctement stocké
+const tokenStocke = localStorage.getItem("leToken");
+//sans console.log comment vérifier que le token a bien été stocké ? certes avec getItem mais bon comment je le vois sans console.log ?!
+console.log("Token stocké :", localStorage.getItem("leToken"));
+
 let form = document.querySelector("form");
 
 form.addEventListener("submit", (event) => {
@@ -32,11 +39,11 @@ form.addEventListener("submit", (event) => {
       .then((Response) => Response.json())
       .then((data) => {
         if (data.success) {
-          //à la fin il faudra une redirection vers page d'accueil plut^t que connexion réussie
-          // messageRenvoye.innerText = "Connexion réussie";
+          window.location.href = "index.html";
         } else {
-          // messageRenvoye.innerText =
-          // "l'email et/ou le mot de passe sont incorrects";
+          const messageRenvoye = document.getElementById("message");
+          messageRenvoye.innerText =
+            "l'email et/ou le mot de passe sont incorrects";
         }
       })
       .catch((error) => {
@@ -44,7 +51,7 @@ form.addEventListener("submit", (event) => {
       });
   }
 });
-// pourquoi le console.log(motdepasse) ne s'affiche pas ???
+
 //Utilisation des expressions régulières pour décrire le format des chaînes de caractères avec RegExp
 //revoir comment s'utilise regex101.com
 //   let chaine = "test";
