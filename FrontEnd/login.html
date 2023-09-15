@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="./assets/style.css" />
     <title>Login</title>
+    <script src="./js/login.js" defer></script>
   </head>
   <body>
     <header>
@@ -27,11 +28,13 @@
     </header>
     <section id="login">
       <h2>Log In</h2>
-      <form action="#" method="post">
+      <!--action= adresse page qui va traiter les infos donc login.js -->
+      <!--il faudra remplacer "GET" par "POST" pour rendre fonctionnel-->
+      <form action="http://localhost:5678/api/works/users/login" method="post">
         <label for="email">E-mail</label>
-        <input type="email" name="email" id="email" />
+        <input type="email" id="email" name="email" autofocus id="email" required/>
         <label for="motdepasse">Mot de passe</label>
-        <input type="motdepasse" name="motdepasse" id="motdepasse" />
+        <input type="text" id="motdepasse" name="motdepasse"  required />
         <input type="submit" value="Se connecter" />
         <a href="motdepasseoublie">Mot de passe oublié</a>
       </form>

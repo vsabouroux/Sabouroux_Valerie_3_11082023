@@ -1,4 +1,4 @@
-let categories = []; // Utilisation d'un tableau pour stocker les catégories
+let categories = [];
 
 // récupération des WORKS sur le localhost du BackEnd dans lesquels il y a la catégorie embarquée
 fetch("http://localhost:5678/api/works")
@@ -7,7 +7,6 @@ fetch("http://localhost:5678/api/works")
     console.log(projets);
     genererProjets(projets);
     console.log(categories);
-    genererCategories(categories); // works
   })
   .catch((error) => {
     console.error(
@@ -16,17 +15,23 @@ fetch("http://localhost:5678/api/works")
     );
   });
 
+//utilisation await et async pour récupérer les catégories embarquées ds works et attendre les traitements à venir
+
 //Chaque projet "embarque" la CATEGORIE donc idée d'inserer dans la boucle for of l'écoute du clic
 //Gestion des boutons
 
 function genererProjets(projets) {
   const divGallery = document.querySelector(".gallery");
+  let divFiltres = document.querySelector(".filtres");
   divGallery.innerHTML = "";
 
   for (const projet of projets) {
     //choix et création balises du DOM
     // const projet = projets[i]; "for ...of" remplace la boucle for avec i i++ and so on
-
+    categories.push({
+      id: projet.category.id,
+      name: projet.category.name,
+    });
     const projetElement = document.createElement("div");
     //création des balises du projet
     const imageElement = document.createElement("img");
@@ -39,37 +44,45 @@ function genererProjets(projets) {
     projetElement.appendChild(imageElement);
     projetElement.appendChild(titleElement);
 
-    // ajoute const pour catégorie et alimenter le tableau sans doublon
-    const categorieName = projet.category.name;
-    if (!categories.includes(categorieName)) {
-      categories.push({
-        id: projet.category.id,
-        name: projet.category.name,
-      });
+    //const categoryElement = document.createElement("button"); //ce bouton placé ici  affiche autant de boutons que de projets et donc qd on appelle la fonction tous les boutons associés aux projets s'affichent !
+    //categoryElement.innerText = projet.category.name;
+    //genererCategories(categories, works);
+
+    //Au clic d'un bouton de catégorie, afficher les projets par catégorie
+    divFiltres = document.querySelector(".filtres");
+
+    // Création du bouton "Tous"
+    const btnTous = document.createElement("button");
+    btnTous.innerText = "Tous";
+    btnTous.addEventListener("click", () => filterWorks("Tous"));
+    divFiltres.appendChild(btnTous);
+
+    // Création des boutons pour chaque catégorie
+    const btnCategory = document.createElement("button");
+    btnCategory.innerText = projet.category.name;
+    btnCategory.addEventListener("click", () => filterWorks(projet.category.name));
+    divFiltres.appendChild(btnCategory);
+
+   // for (const categorie of categories) {
+   //   const btnCategorie = document.createElement("button");
+     // btnCategorie.innerText = categorie.name;
+     // btnCategorie.addEventListener("click", () => filterWorks(categorie.name));
+     // divFiltres.appendChild(btnCategorie);
+    //}
+  }
+
+  function filterWorks(category) {
+    const divGallery = document.querySelector(".gallery");
+    divGallery.innerHTML = "";
+
+    if (category === "Tous") {
+      genererProjets(projets);
+    } else {
+      const projetsFiltres = projets.filter(
+        (projet) => projet.category.name === category
+      );
+      genererProjets(projetsFiltres);
     }
   }
 }
-//j'ai enlevé works ds () de la fonction ci-dessous
-function genererCategories(categories) {
-  divFiltres = document.querySelector(".filtres");
-
-  for (const categorie of categories) {
-    //Créer element "element"
-    const categorieElement = document.createElement("button");
-    categorieElement.innerText = categorie.name;
-    console.log(categorie.name);
-
-    // element.addEventListener (filterWorks())
-    categorieElement.addEventListener("click", () => {
-      filterWorks(categorie); // Appel de la fonction de filtrage avec la catégorie sélectionnée
-    });
-
-    divFiltres.appendChild(categorieElement);
-  }
-}
-
-function filterWorks(selectedCategory) {
-  // genererProjets(projets);
-  const divGallery = document.querySelector(".gallery");
-  divGallery.innerHTML = ""; // Efface le contenu précédent de la galerie
-}
+//////////////reste les doublons des boutons à supprimer boucles en boucle !!!/////////:
