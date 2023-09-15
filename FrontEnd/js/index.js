@@ -6,6 +6,7 @@ fetch("http://localhost:5678/api/works")
   .then((projets) => {
     console.log(projets);
     genererProjets(projets);
+    genererCategories(categories, projets);
     console.log(categories);
   })
   .catch((error) => {
@@ -28,10 +29,7 @@ function genererProjets(projets) {
   for (const projet of projets) {
     //choix et création balises du DOM
     // const projet = projets[i]; "for ...of" remplace la boucle for avec i i++ and so on
-    categories.push({
-      id: projet.category.id,
-      name: projet.category.name,
-    });
+
     const projetElement = document.createElement("div");
     //création des balises du projet
     const imageElement = document.createElement("img");
@@ -44,45 +42,59 @@ function genererProjets(projets) {
     projetElement.appendChild(imageElement);
     projetElement.appendChild(titleElement);
 
-    //const categoryElement = document.createElement("button"); //ce bouton placé ici  affiche autant de boutons que de projets et donc qd on appelle la fonction tous les boutons associés aux projets s'affichent !
-    //categoryElement.innerText = projet.category.name;
-    //genererCategories(categories, works);
+    // Création du tableau catégories sans doublon
+    categories.push({
+      id: projet.category.id,
+      name: projet.category.name,
+    });
+  }
+}
 
-    //Au clic d'un bouton de catégorie, afficher les projets par catégorie
-    divFiltres = document.querySelector(".filtres");
+function genererCategories(categories, projets) {
+  console.log(categories);
+  //Gere l'affichage des catégories
+  //const categoryElement = document.createElement("button"); //ce bouton placé ici  affiche autant de boutons que de projets et donc qd on appelle la fonction tous les boutons associés aux projets s'affichent !
+  //categoryElement.innerText = projet.category.name;
+  //genererCategories(categories, works);
 
-    // Création du bouton "Tous"
-    const btnTous = document.createElement("button");
-    btnTous.innerText = "Tous";
-    btnTous.addEventListener("click", () => filterWorks("Tous"));
-    divFiltres.appendChild(btnTous);
+  //Au clic d'un bouton de catégorie, afficher les projets par catégorie
+  divFiltres = document.querySelector(".filtres");
 
+  // Création du bouton "Tous"
+  const btnTous = document.createElement("button");
+  btnTous.innerText = "Tous";
+  btnTous.addEventListener("click", () => filterWorks("Tous", projets));
+  divFiltres.appendChild(btnTous);
+
+  for (const category of categories) {
     // Création des boutons pour chaque catégorie
     const btnCategory = document.createElement("button");
-    btnCategory.innerText = projet.category.name;
-    btnCategory.addEventListener("click", () => filterWorks(projet.category.name));
+    btnCategory.innerText = category.name;
+    btnCategory.addEventListener("click", () =>
+      filterWorks(category.name, projets)
+    );
     divFiltres.appendChild(btnCategory);
-
-   // for (const categorie of categories) {
-   //   const btnCategorie = document.createElement("button");
-     // btnCategorie.innerText = categorie.name;
-     // btnCategorie.addEventListener("click", () => filterWorks(categorie.name));
-     // divFiltres.appendChild(btnCategorie);
-    //}
   }
 
-  function filterWorks(category) {
-    const divGallery = document.querySelector(".gallery");
-    divGallery.innerHTML = "";
+  // for (const categorie of categories) {
+  //   const btnCategorie = document.createElement("button");
+  // btnCategorie.innerText = categorie.name;
+  // btnCategorie.addEventListener("click", () => filterWorks(categorie.name));
+  // divFiltres.appendChild(btnCategorie);
+  //}
+}
 
-    if (category === "Tous") {
-      genererProjets(projets);
-    } else {
-      const projetsFiltres = projets.filter(
-        (projet) => projet.category.name === category
-      );
-      genererProjets(projetsFiltres);
-    }
+function filterWorks(category, projets) {
+  // const divGallery = document.querySelector(".gallery");
+  // divGallery.innerHTML = "";
+
+  if (category === "Tous") {
+    genererProjets(projets);
+  } else {
+    const projetsFiltres = projets.filter(
+      (projet) => projet.category.name === category
+    );
+    genererProjets(projetsFiltres);
   }
 }
 //////////////reste les doublons des boutons à supprimer boucles en boucle !!!/////////:
