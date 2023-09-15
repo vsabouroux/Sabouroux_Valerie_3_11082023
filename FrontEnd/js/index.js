@@ -43,15 +43,23 @@ function genererProjets(projets) {
     projetElement.appendChild(titleElement);
 
     // Création du tableau catégories sans doublon
-    categories.push({
-      id: projet.category.id,
-      name: projet.category.name,
-    });
+    // Vérifie si l'élément existe déjà dans le tableau avec la méthode "some()" pour vérifier si un certain critère est vrai pour au moins un élément du tableau.
+    //ici si l'id de la catégorie (ds le tableau) est strictement égal à l'id du projet
+    const existe = categories.some(
+      (category) => category.id === projet.category.id
+    );
+    // Si l'élément n'existe pas, l'ajouter au tableau. le ! indique le contraire donc ici si la catégorie n'existe pas ds le tableau alors on va l'ajouter
+    if (!existe) {
+      categories.push({
+        id: projet.category.id,
+        name: projet.category.name,
+      });
+    }
   }
 }
 
 function genererCategories(categories, projets) {
-  console.log(categories);
+  //console.log(categories);
   //Gere l'affichage des catégories
   //const categoryElement = document.createElement("button"); //ce bouton placé ici  affiche autant de boutons que de projets et donc qd on appelle la fonction tous les boutons associés aux projets s'affichent !
   //categoryElement.innerText = projet.category.name;
@@ -64,6 +72,13 @@ function genererCategories(categories, projets) {
   const btnTous = document.createElement("button");
   btnTous.innerText = "Tous";
   btnTous.addEventListener("click", () => filterWorks("Tous", projets));
+  btnTous.addEventListener(
+    "click",
+    () => (
+      (btnTous.style.backgroundColor = "#1d6154"),
+      (btnTous.style.color = "#FFFFFF")
+    )
+  );
   divFiltres.appendChild(btnTous);
 
   for (const category of categories) {
@@ -72,6 +87,13 @@ function genererCategories(categories, projets) {
     btnCategory.innerText = category.name;
     btnCategory.addEventListener("click", () =>
       filterWorks(category.name, projets)
+    );
+    btnCategory.addEventListener(
+      "click",
+      () => (
+        (btnCategory.style.backgroundColor = "#1d6154"),
+        (btnCategory.style.color = "#FFFFFF")
+      )
     );
     divFiltres.appendChild(btnCategory);
   }
@@ -97,4 +119,3 @@ function filterWorks(category, projets) {
     genererProjets(projetsFiltres);
   }
 }
-//////////////reste les doublons des boutons à supprimer boucles en boucle !!!/////////:

@@ -24,7 +24,7 @@ form.addEventListener("submit", (event) => {
     const chargeUtile = JSON.stringify(identifiants);
 
     //envoi données avec une requête POST
-    fetch("http://localhost:5678/api/works/users/login", {
+    fetch("http://localhost:5678/api/users/login", {
       method: "POST",
       body: chargeUtile,
       headers: { "content-type": "application/json" }, //propriete concerne le format de la charge utile. Ici un objet au format json
@@ -42,15 +42,12 @@ form.addEventListener("submit", (event) => {
       .catch((error) => {
         console.error("Erreur lors de la requête POST :", error);
       });
-  } else {
-    console.log("Le champ e-mail est vide");
   }
-
-  // pourquoi le console.log(motdepasse) ne s'affiche pas ???
-  //Utilisation des expressions régulières pour décrire le format des chaînes de caractères avec RegExp
-  //revoir comment s'utilise regex101.com
-  //   let chaine = "test";
-  //  let regex = newRegExp ("^[a-z 0-9._-]$");
-  //   let resultat = regex.test(chaine);
-  // console.log(resultat);
 });
+// pourquoi le console.log(motdepasse) ne s'affiche pas ???
+//Utilisation des expressions régulières pour décrire le format des chaînes de caractères avec RegExp
+//revoir comment s'utilise regex101.com
+//   let chaine = "test";
+//  let regex = newRegExp ("^[a-z 0-9._-]$");
+//   let resultat = regex.test(chaine);
+// console.log(resultat);
