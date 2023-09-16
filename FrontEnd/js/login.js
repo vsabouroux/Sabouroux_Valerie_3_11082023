@@ -38,12 +38,16 @@ form.addEventListener("submit", (event) => {
     })
       .then((Response) => Response.json())
       .then((data) => {
+        console.log("reponse du serveur:", data);
         if (data.success) {
           window.location.href = "index.html";
         } else {
-          const messageRenvoye = document.getElementById("message");
+          const messageRenvoye = document.querySelector("message");
+          //pb message renvoyer divMessage n'est pas défini
+          divMessage.innerHTML = "";
           messageRenvoye.innerText =
             "l'email et/ou le mot de passe sont incorrects";
+          divMessage.appendChild(message);
         }
       })
       .catch((error) => {
