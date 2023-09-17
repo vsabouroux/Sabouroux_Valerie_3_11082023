@@ -44,7 +44,8 @@ form.addEventListener("submit", (event) => {
           localStorage.setItem("leToken", data.token);
           // Rediriger vers la page d'accueil
           window.location.href = "index.html";
-          //à partir du moment où il y a un token ds le localStorage alors afficher la barre d'étition et les 2 boutons (new version) pour les modifs
+          //à partir du moment où il y a un token ds le localStorage alors afficher la barre d'étition et les 2 boutons (new version) pour les modifs sur la page HTML
+          //création des éléments barre noire avec boutons "mode édition" et modifier et icon fontawsome
         } else {
           // Afficher un message d'erreur
           const messageRenvoye = document.querySelector(".message");
