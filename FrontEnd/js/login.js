@@ -1,13 +1,13 @@
 //Récupération du token pour stockage dans le localStorage (pour maintenir l'authentification de l'utilisateur pour qu'il puisse continuer à interagir sur le site)
 //c'est le serveur qui crée ce token après envoi des infos par l'utilisateur
-const leToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4";
+//const leToken =
+// "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4";
 // Stocker le token dans le localStorage
-localStorage.setItem("leToken", leToken);
+//localStorage.setItem("leToken", leToken);
 //Vérification si le token a été correctement stocké
-const tokenStocke = localStorage.getItem("leToken");
+//const tokenStocke = localStorage.getItem("leToken");
 //sans console.log comment vérifier que le token a bien été stocké ? certes avec getItem mais bon comment je le vois sans console.log ?!
-console.log("Token stocké :", localStorage.getItem("leToken"));
+//console.log("Token stocké :", localStorage.getItem("leToken"));
 
 let form = document.querySelector("form");
 
@@ -39,17 +39,26 @@ form.addEventListener("submit", (event) => {
       .then((Response) => Response.json())
       .then((data) => {
         console.log("reponse du serveur:", data);
-        if (data.success) {
+        if (data.token) {
+          // Stocker le token dans le localStorage. l'API a vérifié que l'utilisateur est bien authorisé et à transformé son mail et mdp en une chaine de caractère "token" et le renvoie au client
+          localStorage.setItem("leToken", data.token);
+          // Rediriger vers la page d'accueil
           window.location.href = "index.html";
+          //à partir du moment où il y a un token ds le localStorage alors afficher la barre d'étition et les 2 boutons (new version) pour les modifs
         } else {
-          const messageRenvoye = document.querySelector("message");
-          //pb message renvoyer divMessage n'est pas défini
-          divMessage.innerHTML = "";
-          messageRenvoye.innerText =
-            "l'email et/ou le mot de passe sont incorrects";
-          divMessage.appendChild(message);
+          // Afficher un message d'erreur
+          const messageRenvoye = document.querySelector(".message");
+          messageRenvoye.innerHTML =
+            "L'email et/ou le mot de passe sont incorrects";
         }
+        // if (data.message) {
+        // window.location.href = "index.html";
+        //} else {
+        //const messageRenvoye = document.querySelector(".message");
+        //messageRenvoye.innerHTML =
+        //"l'email et/ou le mot de passe sont incorrects";
       })
+      //})
       .catch((error) => {
         console.error("Erreur lors de la requête POST :", error);
       });
