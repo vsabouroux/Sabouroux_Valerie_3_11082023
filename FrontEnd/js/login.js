@@ -44,7 +44,7 @@ form.addEventListener("submit", (event) => {
           // Rediriger vers la page d'accueil
           window.location.href = "index.html";
           //à partir du moment où il y a un token ds le localStorage alors afficher la barre d'étition et les 2 boutons (new version) pour les modifs sur la page HTML
-          // Est-ce que le token existe dans le localStorage
+          // Est-ce que le token existe dans le localStorage cf. admin.js le console.log
         } else {
           // Afficher un message d'erreur
           const messageRenvoye = document.querySelector(".message");

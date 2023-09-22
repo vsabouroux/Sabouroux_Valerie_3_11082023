@@ -174,7 +174,13 @@ nav li {
   padding: 0 10px;
   font-size: 1.2em;
 }
-
+/** rajout style bouton logout **/
+.logout {
+  background-color: transparent;
+  border-style: none;
+  font-size: 16.8px;
+  cursor: pointer;
+}
 li:hover {
   color: #b1663c;
 }
@@ -350,12 +356,11 @@ footer nav ul {
 /* Styles pour la barre noire */
 .black-bar {
   background-color: black;
-  height: 40px; /* Ajustez la hauteur selon vos besoins */
+  height: 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px; /* Ajustez la marge intérieure selon vos besoins */
-  color: white; /* Couleur du texte */
+  padding: 0 20px;
+  color: white;
 }
 
 /* Styles pour l'icône Font Awesome */
