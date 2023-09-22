@@ -20,7 +20,6 @@ form.addEventListener("submit", (event) => {
   if (baliseEmail.value && baliseMotDePasse.value) {
     console.log("Le champ e-mail est rempli");
 
-    //Suite de code
     //construction charge utile pour envoyer requête qui permettra d'ajouter les identifiants du user ds l'API
     const identifiants = {
       email: baliseEmail.value,
@@ -41,9 +40,11 @@ form.addEventListener("submit", (event) => {
         console.log("reponse du serveur:", data);
         if (data.token) {
           // Stocker le token dans le localStorage. l'API a vérifié que l'utilisateur est bien authorisé et à transformé son mail et mdp en une chaine de caractère "token" et le renvoie au client
-          localStorage.setItem("leToken", data.token);
+          localStorage.setItem("token", data.token);
           // Rediriger vers la page d'accueil
           window.location.href = "index.html";
+          //à partir du moment où il y a un token ds le localStorage alors afficher la barre d'étition et les 2 boutons (new version) pour les modifs sur la page HTML
+          // Est-ce que le token existe dans le localStorage
         } else {
           // Afficher un message d'erreur
           const messageRenvoye = document.querySelector(".message");
@@ -54,29 +55,6 @@ form.addEventListener("submit", (event) => {
       .catch((error) => {
         console.error("Erreur lors de la requête POST :", error);
       });
-    // Est-ce que le token existe dans le localStorage
-  }
-  //à partir du moment où il y a un token ds le localStorage alors afficher la barre d'étition et les 2 boutons (new version) pour les modifs sur la page HTML
-  //création des éléments barre noire avec boutons "mode édition" et modifier et icon fontawsome
-  const token = localStorage.getItem("leToken");
-  if (token) {
-    // Création de la barre noire
-    const blackBar = document.createElement("div");
-    blackBar.classList.add("black-bar"); // Ajout d'une classe CSS pour le style
-
-    // Création de l'icône Font Awesome
-    const icon = document.createElement("i");
-    icon.classList.add("far-regular", "pen-to-square"); // Ajoutez les classes pour l'icône d'édition
-
-    // Création du bouton "Mode édition"
-    const editButton = document.createElement("button");
-    editButton.textContent = "Mode édition";
-    editButton.classList.add("edit-button"); // Ajout d'une classe pour le style
-
-    // Ajout de ces éléments dans le DOM
-    document.body.insertBefore(blackBar, document.body.firstChild); // Insertion la barre noire avant le header
-    blackBar.appendChild(icon); // Ajout de  l'icône à la barre noire
-    blackBar.appendChild(editButton); // Ajout du bouton à la barre noire
   }
 });
 

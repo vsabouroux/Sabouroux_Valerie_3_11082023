@@ -23,7 +23,7 @@ fetch("http://localhost:5678/api/works")
 
 function genererProjets(projets) {
   const divGallery = document.querySelector(".gallery");
-  let divFiltres = document.querySelector(".filtres");
+  //let divFiltres = document.querySelector(".filtres");
   divGallery.innerHTML = "";
 
   for (const projet of projets) {
@@ -45,7 +45,7 @@ function genererProjets(projets) {
     // Création du tableau catégories sans doublon
     // Vérifie si l'élément existe déjà dans le tableau avec la méthode "some()" pour vérifier si un certain critère est vrai pour au moins un élément du tableau.
     //ici si l'id de la catégorie (ds le tableau) est strictement égal à l'id du projet
-    const existe = categories.some(
+    const existe = categories.find(
       (category) => category.id === projet.category.id
     );
     // Si l'élément n'existe pas, l'ajouter au tableau. le ! indique le contraire donc ici si la catégorie n'existe pas ds le tableau alors on va l'ajouter
@@ -71,44 +71,31 @@ function genererCategories(categories, projets) {
   // Création du bouton "Tous"
   const btnTous = document.createElement("button");
   btnTous.innerText = "Tous";
-  btnTous.addEventListener("click", () => filterWorks("Tous", projets));
-  btnTous.addEventListener(
-    "click",
-    () => (
-      (btnTous.style.backgroundColor = "#1d6154"),
-      (btnTous.style.color = "#FFFFFF")
-    )
-  );
+  btnTous.classList.add("active");
+
+  btnTous.addEventListener("click", () => {
+    filterWorks("Tous", projets, btnTous);
+  });
+
   divFiltres.appendChild(btnTous);
 
   for (const category of categories) {
     // Création des boutons pour chaque catégorie
     const btnCategory = document.createElement("button");
+
     btnCategory.innerText = category.name;
-    btnCategory.addEventListener("click", () =>
-      filterWorks(category.name, projets)
-    );
-    btnCategory.addEventListener(
-      "click",
-      () => (
-        (btnCategory.style.backgroundColor = "#1d6154"),
-        (btnCategory.style.color = "#FFFFFF")
-      )
-    );
+    btnCategory.addEventListener("click", () => {
+      filterWorks(category.name, projets, btnCategory);
+    });
+
     divFiltres.appendChild(btnCategory);
   }
-
-  // for (const categorie of categories) {
-  //   const btnCategorie = document.createElement("button");
-  // btnCategorie.innerText = categorie.name;
-  // btnCategorie.addEventListener("click", () => filterWorks(categorie.name));
-  // divFiltres.appendChild(btnCategorie);
-  //}
 }
 
-function filterWorks(category, projets) {
-  // const divGallery = document.querySelector(".gallery");
-  // divGallery.innerHTML = "";
+function filterWorks(category, projets, btn) {
+  const exActiveFilter = document.querySelector(".filtres button.active");
+  exActiveFilter.classList.remove("active");
+  btn.classList.add("active");
 
   if (category === "Tous") {
     genererProjets(projets);

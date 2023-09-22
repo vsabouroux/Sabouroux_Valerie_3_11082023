@@ -261,7 +261,8 @@ nav a:focus {
   margin: 5px;
 }
 
-.filtres button:hover {
+.filtres button:hover,
+.filtres button.active {
   background-color: #1d6154;
   color: white;
 }
@@ -358,9 +359,10 @@ footer nav ul {
 }
 
 /* Styles pour l'icône Font Awesome */
-.pen-to-square {
-  font-size: 24px;
-  margin-right: 10px; /* Marge à droite de l'icône */
+.fa-regular.fa-edit {
+  font-size: 15px;
+  margin-right: 10px;
+  margin-left: 450px;
 }
 
 /* Styles pour le bouton "Mode édition" */
@@ -370,4 +372,5 @@ footer nav ul {
   color: white;
   font-size: 16px;
   cursor: pointer;
+  margin-right: 400px;
 }
