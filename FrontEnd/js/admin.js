@@ -19,9 +19,16 @@ if (token) {
   editButton.classList.add("edit-button"); // Ajout d'une classe pour le style
 
   // Ajout de ces éléments ds le DOM
-  document.body.insertBefore(blackBar, document.body.firstChild); // Insertion la barre noire avant le header
+  document.body.insertBefore(blackBar, document.body.firstChild); // Insertion de la barre noire avant le header
   blackBar.appendChild(icon); // Ajout de  l'icône à la barre noire
   blackBar.appendChild(editButton); // Ajout du bouton à la barre noire
+
+  //Mode édition sans les catégories
+  //récupération des boutons puis les cacher jusqu'au clic sur logout
+  const categories = document.querySelectorAll(".filtres");
+  categories.forEach((category) => {
+    category.style.display = "none";
+  });
 
   //   Ajoute le systeme pour afficher "logout"
   //qd l'utilisateur est correctement connecté alors le bouton "logout" remplace "login"
@@ -31,8 +38,10 @@ if (token) {
   logoutButton.textContent = "Logout";
   logoutButton.classList.add("logout"); // Ajout d'une classe pour le style
 
-  // Remplacez le lien de connexion par le bouton "logout"
+  // Pour remplacer le lien de connexion par le bouton "logout"
   if (btnLogin) {
+    //.replaceChild() : C'est une méthode DOM JavaScript qui permet de remplacer un enfant d'un élément
+    // par un autre. Dans ce cas, on remplace btnLogin par logoutButton dans l'élément parent de btnLogin.
     btnLogin.parentNode.replaceChild(logoutButton, btnLogin);
   }
 }
