@@ -289,8 +289,10 @@ nav a:focus {
   color: white;
 } */
 #portfolio h2 {
-  text-align: center;
-  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  margin-bottom: 80px;
+  margin-left: 550px;
 }
 .gallery {
   width: 100%;
@@ -355,6 +357,7 @@ footer nav ul {
 /**pour la page d'accueil en mode édition
 /* Styles pour la barre noire */
 .black-bar {
+  justify-content: center;
   background-color: black;
   height: 40px;
   display: flex;
@@ -363,7 +366,7 @@ footer nav ul {
   color: white;
 }
 
-/* Styles pour l'icône Font Awesome */
+/* Styles pour l'icône Font Awesome sur la barre noire */
 .fa-regular.fa-edit {
   font-size: 15px;
   margin-right: 10px;
@@ -378,4 +381,15 @@ footer nav ul {
   font-size: 16px;
   cursor: pointer;
   margin-right: 400px;
+}
+/* Styles pour le bouton "Modifier" */
+.modifier-button {
+  color: black;
+  border: none;
+  background-color: transparent;
+}
+/* Styles pour l'icône Font Awesome à gauche du bouton modifier */
+.fa-regular.fa-edit {
+  margin-left: 30px;
+  cursor: pointer;
 }
