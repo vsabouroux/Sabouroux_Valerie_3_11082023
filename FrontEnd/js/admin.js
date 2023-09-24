@@ -31,7 +31,7 @@ if (token) {
       modifierButton.classList.add("modifier-button");
 
       // Création de l'icône "fa-edit"
-      const editIcon = document.createElement("j");
+      const editIcon = document.createElement("i");
       editIcon.classList.add("fa-regular", "fa-edit");
 
       // Insertion de l'icône et du bouton dans l'élément h2 du DOM
@@ -66,18 +66,18 @@ if (token) {
     // par un autre. Dans ce cas, on remplace btnLogin par logoutButton dans l'élément parent de btnLogin.
     btnLogin.parentNode.replaceChild(logoutButton, btnLogin);
   }
-}
-// Fonction de déconnexion (Clear le locaStorage et recharger les pages)
-//localStorage.removeItemItem("token");
-function deconnexion() {
-  const logoutButton = document.querySelector(".logout");
-  if (logoutButton) {
-    logoutButton.addEventListener("click", () => {
-      // Supprimez le token du localStorage (déconnexion)
-      localStorage.removeItem("token");
-      // Redirigez l'utilisateur vers la page d'accueil
-      window.location.href = "index.html";
-    });
+  // Fonction de déconnexion (Clear le locaStorage et recharger les pages)
+  //localStorage.removeItemItem("token");
+  function deconnexion() {
+    const logoutButton = document.querySelector(".logout");
+    if (logoutButton) {
+      logoutButton.addEventListener("click", () => {
+        // Supprimez le token du localStorage (déconnexion)
+        localStorage.removeItem("token");
+        // Redirigez l'utilisateur vers la page d'accueil
+        window.location.href = "index.html";
+      });
+    }
   }
+  deconnexion();
 }
-deconnexion();
