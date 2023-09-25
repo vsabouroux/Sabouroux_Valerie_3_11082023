@@ -386,9 +386,10 @@ footer nav ul {
   color: black;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 /* Styles pour l'icône Font Awesome à gauche du bouton modifier */
-.fa-regular.fa-edit {
+#portfolio .fa-regular.fa-edit {
   margin-left: 30px;
-  cursor: pointer;
+  color: black;
 }
