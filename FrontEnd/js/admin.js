@@ -18,7 +18,7 @@ if (token) {
   editButton.textContent = "Mode édition";
   editButton.classList.add("edit-button");
 
-  //Création du bouton "modifier" à côté de projet et ajouter aussi l'icone crayon
+  //Création du bouton "modifier" à côté de projet et ajouter aussi l'icone crayon sur la page en mode édition
   // Sélectionnez tous les éléments <h2>
   const h2Elements = document.querySelectorAll("h2");
 
@@ -34,7 +34,7 @@ if (token) {
       const editIcon = document.createElement("i");
       editIcon.classList.add("fa-regular", "fa-edit");
 
-      // Insertion de l'icône et du bouton dans l'élément h2 du DOM
+      // Insertion de l'icône et du bouton modifier dans l'élément h2 du DOM
       h2Element.appendChild(editIcon);
       h2Element.appendChild(modifierButton);
     }

@@ -1,6 +1,6 @@
 /*** Style pour la modale ***/
 .modal {
-  display: none; /* Masque la modale par défaut */
+  display: flex; /* Masque la modale par défaut */
   position: fixed; /* Positionnement fixe pour la superposer à la page */
   top: 0;
   left: 0;
