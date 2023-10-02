@@ -8,6 +8,7 @@ fetch("http://localhost:5678/api/works")
     genererProjets(projets);
     genererCategories(categories, projets);
     console.log(categories);
+    genererProjetsInModal(projets);
   })
   .catch((error) => {
     console.error(
@@ -45,6 +46,7 @@ function genererProjets(projets) {
     // Création du tableau catégories sans doublon
     // Vérifie si l'élément existe déjà dans le tableau avec la méthode "some()" pour vérifier si un certain critère est vrai pour au moins un élément du tableau.
     //ici si l'id de la catégorie (ds le tableau) est strictement égal à l'id du projet
+    // avec find c'est plus simple
     const existe = categories.find(
       (category) => category.id === projet.category.id
     );
@@ -106,3 +108,4 @@ function filterWorks(category, projets, btn) {
     genererProjets(projetsFiltres);
   }
 }
+function genererProjetsInModal(projets) {}

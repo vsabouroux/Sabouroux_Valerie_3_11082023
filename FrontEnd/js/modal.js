@@ -10,12 +10,12 @@ const modalcontent = document.querySelector(".modal-content");
 function fermerModal() {
   modal.style.display = "none";
 }
-
+// Fonction pour ouvrir la modale
 function ouvrirModal() {
   modal.style.display = "block";
 }
 
-// buttonModifier.addEventListener("click", ouvrirModal);
+// Ecoute du click sur bouton "modifier" à côté de "Projets"
 modifierButton.addEventListener("click", ouvrirModal);
 
 // Ajout gestionnaire d'événement click au bouton de fermeture (X)
