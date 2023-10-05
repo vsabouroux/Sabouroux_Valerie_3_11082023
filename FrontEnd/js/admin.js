@@ -20,25 +20,25 @@ if (token) {
 
   //Création du bouton "modifier" à côté de projet et ajouter aussi l'icone crayon sur la page en mode édition
   // Sélectionnez tous les éléments <h2>
-  const h2Elements = document.querySelectorAll("h2");
-
+  const h2Element = document.getElementById("btnProjet");
+  console.log(h2Element);
   // On va chercher tous les éléments <h2> pour trouver celui qui contient "Mes Projets"
-  h2Elements.forEach((h2Element) => {
-    if (h2Element.textContent.includes("Mes Projets")) {
-      // Création du bouton "Modifier"
-      const modifierButton = document.createElement("button");
-      modifierButton.textContent = "Modifier";
-      modifierButton.classList.add("modifier-button");
+  // h2Elements.forEach((h2Element) => {
+  //   if (h2Element.textContent.includes("Mes Projets")) {
+  // Création du bouton "Modifier"
+  const modifierButton = document.createElement("button");
+  modifierButton.textContent = "Modifier";
+  modifierButton.classList.add("modifier-button");
 
-      // Création de l'icône "fa-edit"
-      const editIcon = document.createElement("i");
-      editIcon.classList.add("fa-regular", "fa-edit");
+  // Création de l'icône "fa-edit"
+  const editIcon = document.createElement("i");
+  editIcon.classList.add("fa-regular", "fa-edit");
 
-      // Insertion de l'icône et du bouton modifier dans l'élément h2 du DOM
-      h2Element.appendChild(editIcon);
-      h2Element.appendChild(modifierButton);
-    }
-  });
+  // Insertion de l'icône et du bouton modifier dans l'élément h2 du DOM
+  h2Element.appendChild(editIcon);
+  h2Element.appendChild(modifierButton);
+  // }
+  // });
 
   // Ajout de ces éléments ds le DOM
   document.body.insertBefore(blackBar, document.body.firstChild); // Insertion de la barre noire avant le header

@@ -15,8 +15,10 @@ function ouvrirModal() {
   modal.style.display = "block";
 }
 
-// Ecoute du click sur bouton "modifier" à côté de "Projets"
-modifierButton.addEventListener("click", ouvrirModal);
+if (modifierButton) {
+  // Ecoute du click sur bouton "modifier" à côté de "Projets"
+  modifierButton.addEventListener("click", ouvrirModal);
+}
 
 // Ajout gestionnaire d'événement click au bouton de fermeture (X)
 closeBtn.addEventListener("click", fermerModal);
