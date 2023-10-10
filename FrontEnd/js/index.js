@@ -108,4 +108,44 @@ function filterWorks(category, projets, btn) {
     genererProjets(projetsFiltres);
   }
 }
-function genererProjetsInModal(projets) {}
+function genererProjetsInModal(projets) {
+  const projetsModal = document.querySelector(".projets-modal");
+
+  projetsModal.innerHTML = ""; // Efface le contenu précédent de la modal
+
+  projets.forEach((projet) => {
+    const projetDiv = document.createElement("div");
+    projetDiv.classList.add("projet-modal");
+
+    // Création de l'image du projet
+    const imageElement = document.createElement("img");
+    imageElement.src = projet.imageUrl;
+    projetDiv.appendChild(imageElement);
+
+    // Création du bouton "Éditer" sous la photo
+    const editButton = document.createElement("button");
+    editButton.textContent = "Éditer";
+    projetDiv.appendChild(editButton);
+
+    // Création de l'icône "trash" en haut à droite de l'image
+    const trashIcon = document.createElement("i");
+    trashIcon.classList.add("fas", "fa-trash", "trash-icon");
+    projetDiv.appendChild(trashIcon);
+
+    // Ajout du projet à la modal
+    projetsModal.appendChild(projetDiv);
+
+    // Gestion du clic sur le bouton "Éditer"
+    editButton.addEventListener("click", () => {
+      // Code pour gérer l'édition du projet
+      console.log("Éditer le projet : ", projet.title);
+    });
+
+    // Gestion du clic sur l'icône "trash"
+    trashIcon.addEventListener("click", () => {
+      // Code pour supprimer le projet
+      // demander une confirmation à l'utilisateur avant de supprimer le projet ??
+      console.log("Supprimer le projet : ", projet.title);
+    });
+  });
+}

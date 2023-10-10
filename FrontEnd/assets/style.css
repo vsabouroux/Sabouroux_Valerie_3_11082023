@@ -255,7 +255,8 @@ nav a:focus {
   margin-bottom: 20px;
 }
 
-.filtres button {
+.filtres button,
+.btnModifier {
   border-radius: 20px;
   border-color: #1d6154;
   border-width: 1px;
@@ -268,7 +269,8 @@ nav a:focus {
 }
 
 .filtres button:hover,
-.filtres button.active {
+.filtres button.active,
+.btnModifier {
   background-color: #1d6154;
   color: white;
 }
@@ -410,7 +412,7 @@ footer nav ul {
   background-color: white;
   margin: 10% auto; /* Centre la modale verticalement */
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 15px;
   width: 631px; /* Largeur de la modale */
   height: 731px;
   position: relative;
@@ -428,4 +430,10 @@ h3 {
   font-size: 2em;
   font-weight: bold;
   cursor: pointer;
+}
+.btnModifier {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 15px 30px;
+  box-shadow: 0px 3px 15px black (0, 0, 0, 0.1);
 }
