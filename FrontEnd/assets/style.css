@@ -413,8 +413,8 @@ footer nav ul {
   margin: 10% auto; /* Centre la modale verticalement */
   padding: 20px;
   border-radius: 15px;
-  width: 631px; /* Largeur de la modale */
-  height: 731px;
+  width: 60%; /* Largeur de la modale */
+  max-height: 80%;
   position: relative;
 }
 h3 {
@@ -436,4 +436,59 @@ h3 {
   font-weight: bold;
   padding: 15px 30px;
   box-shadow: 0px 3px 15px black (0, 0, 0, 0.1);
+}
+/**style sur images projets dans modal**/
+.projets-modal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.projet-modal {
+  width: calc(20% - 10px); /* 4 colonnes avec espace entre elles */
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.projets-modal img {
+  width: 100%;
+  height: auto;
+}
+.projets-modal button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.trash-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+/*** ligne grise sous les photos de la modale***/
+/*en cours...!!!*/
+.line-bar {
+  height: 2px;
+  background-color: #a2f315;
+  width: 100%;
+}
+/***style pour bouton "ajouter une photo" dans la modale***/
+.add-new-projet {
+  font-family: "Syne";
+  font-weight: bold;
+  color: white;
+  background-color: #1d6154;
+  margin: 10px auto;
+  width: 200px;
+  text-align: center;
+  border-radius: 60px;
+  box-shadow: 0px 5px 0px gainsboro;
+  height: 36px;
 }

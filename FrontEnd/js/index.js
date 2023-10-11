@@ -122,9 +122,9 @@ function genererProjetsInModal(projets) {
     imageElement.src = projet.imageUrl;
     projetDiv.appendChild(imageElement);
 
-    // Création du bouton "Éditer" sous la photo
+    // Création du bouton "éditer" sous la photo
     const editButton = document.createElement("button");
-    editButton.textContent = "Éditer";
+    editButton.textContent = "éditer";
     projetDiv.appendChild(editButton);
 
     // Création de l'icône "trash" en haut à droite de l'image
@@ -138,7 +138,7 @@ function genererProjetsInModal(projets) {
     // Gestion du clic sur le bouton "Éditer"
     editButton.addEventListener("click", () => {
       // Code pour gérer l'édition du projet
-      console.log("Éditer le projet : ", projet.title);
+      console.log("éditer le projet : ", projet.title);
     });
 
     // Gestion du clic sur l'icône "trash"
@@ -148,4 +148,17 @@ function genererProjetsInModal(projets) {
       console.log("Supprimer le projet : ", projet.title);
     });
   });
+  // je pense que la ligne et le bouton ajouter une photo ne sont pas au bon endroit car ils font partie d'un projet ?!!
+  //création ligne grise en bas de la modale
+  const lineBar = document.createElement("div");
+  lineBar.classList.add("line-bar");
+  projetsModal.appendChild(lineBar);
+
+  //création bouton "Ajouter une photo"
+  const addNewProjet = document.createElement("button");
+  const ajouterPhoto = document.createElement("p");
+  addNewProjet.classList.add("add-new-projet");
+  ajouterPhoto.innerText = "Ajouter une photo";
+  projetsModal.appendChild(addNewProjet);
+  addNewProjet.appendChild(ajouterPhoto);
 }
