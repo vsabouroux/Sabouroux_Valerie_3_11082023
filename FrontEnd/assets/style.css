@@ -416,7 +416,7 @@ footer nav ul {
   width: 60%; /* Largeur de la modale */
   max-height: 80%;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: scroll; /*Visiblement cela fait disparaître le border radius du côté du scroll ???*/
 }
 h3 {
   font-size: 26px;
