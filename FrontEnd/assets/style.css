@@ -412,10 +412,11 @@ footer nav ul {
   background-color: white;
   margin: 10% auto; /* Centre la modale verticalement */
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 10px;
   width: 60%; /* Largeur de la modale */
   max-height: 80%;
   position: relative;
+  overflow-y: scroll;
 }
 h3 {
   font-size: 26px;
@@ -443,7 +444,7 @@ h3 {
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 .projet-modal {
   width: calc(20% - 10px); /* 4 colonnes avec espace entre elles */
@@ -460,6 +461,11 @@ h3 {
   border: none;
   cursor: pointer;
 }
+button.add-new-projet {
+  background-color: #1d6154;
+  color: white;
+  margin-top: 20px;
+}
 .trash-icon {
   position: absolute;
   top: 10px;
@@ -475,8 +481,8 @@ h3 {
 /*** ligne grise sous les photos de la modale***/
 /*en cours...!!!*/
 .line-bar {
-  height: 2px;
-  background-color: #a2f315;
+  height: 1px;
+  background-color: #b3b3b3;
   width: 100%;
 }
 /***style pour bouton "ajouter une photo" dans la modale***/
