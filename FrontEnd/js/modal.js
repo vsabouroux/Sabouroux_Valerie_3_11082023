@@ -6,6 +6,8 @@ const modal = document.getElementById("modal");
 const closeBtn = document.querySelector(".close");
 const modalcontent = document.querySelector(".modal-content");
 
+//Récupération bouton "ajouter une photo" puis écoute évènement "click" sur ce bouton et enfin ouverture nouvelle modale pour ajouter une photo
+
 // Fonction pour fermer la modale
 function fermerModal() {
   modal.style.display = "none";
