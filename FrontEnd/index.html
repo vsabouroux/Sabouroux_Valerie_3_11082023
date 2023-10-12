@@ -37,7 +37,7 @@
     </header>
     <main>
       <section id="introduction">
-        <!--un seul ID PAR PAGE NON ?-->
+        <!--un seul ID PAR PAGE qui porte le même nom-->
         <figure>
           <img src="./assets/images/sophie-bluel.png" alt="" />
         </figure>
@@ -65,7 +65,7 @@
 
         <!--Ajout filtres-->
         <div class="filtres">
-          <!-- Catégries -->
+          <!-- Catégories -->
         </div>
         <div class="gallery">
           <!-- Works -->
@@ -100,25 +100,44 @@
         <span class="close">&times;</span>
         <!-- Contenu de la modale -->
         <!--ajout bouton modifier pour la modale-->
-        <h3>Galerie photo</h3>
+        <div class="galerie-photo">Galerie photo</div>
         <div class="projets-modal"></div>
-        <!-- Projets seront affichés -->
-        <!-- <p>éditer</p>
-        <button class="btnModifier">Ajouter une photo</button> -->
+        <!-- Projets seront affichés ici -->
       </div>
     </div>
+
     <!-- Modal AJOUT PHOTO -->
     <!--il va falloir faire un formulaire-->
     <div id="modal-ajout-photo">
       <div class="modal-content-ajout-photo">
         <span class="close">&times;</span>
-        <!-- Contenu de la modale -->
-        <!--ajout bouton valider pour ajout photoe-->
+        <div class="back-arrow" id="backArrow">&lt;</div>
+
         <h3>Ajout photo</h3>
+
         <div class="ajout-newPhotoProjet"></div>
-        <!-- Projets seront affichés -->
-        <!-- <p>éditer</p>
-          <button class="btnValider">Valider</button> -->
+        <form action="#" method="post">
+          <!--dans "action" on mettra l'adresse de l'API ?-->
+          <!-- <label for="img">xx</label> : besoin ???-->
+          <!--je pense qu'il faudra faire un lien avec l'API ???-->
+          <input
+            type="img"
+            name="img"
+            id="img"
+            placeholder="jpg, png : 4mo max"
+            size="30"
+            maxlength="20"
+          />
+
+          <label for="name">Titre</label>
+          <input type="text" name="name" id="title" />
+
+          <label for="categorie">Catégorie</label>
+          <select name="categorie" id="categorie">
+            <!-- A générer depuis index.js <option value="xxx">????</option>-->
+          </select>
+          <input type="submit" value="Valider" />
+        </form>
       </div>
     </div>
   </body>

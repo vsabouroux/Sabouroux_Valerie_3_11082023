@@ -418,10 +418,15 @@ footer nav ul {
   position: relative;
   overflow-y: scroll; /*Visiblement cela fait disparaître le border radius du côté du scroll ???*/
 }
-h3 {
+.galerie-photo {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 26px;
   text-align: center;
-  margin-top: 50px;
+}
+h3 {
+  font-size: 16px;
+  text-align: left;
+  margin-top: 10px;
 }
 /* Style pour le bouton de fermeture (X) */
 .close {
@@ -437,6 +442,7 @@ h3 {
   font-weight: bold;
   padding: 15px 30px;
   box-shadow: 0px 3px 15px black (0, 0, 0, 0.1);
+  cursor: pointer;
 }
 /**style sur images projets dans modal**/
 .projets-modal {
@@ -448,7 +454,7 @@ h3 {
 }
 .projet-modal {
   width: calc(20% - 10px); /* 4 colonnes avec espace entre elles */
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   position: relative;
   overflow: hidden;
 }
@@ -456,11 +462,11 @@ h3 {
   width: 100%;
   height: auto;
 }
-.projets-modal button {
+/*.projets-modal button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-}
+}*/
 button.add-new-projet {
   background-color: #1d6154;
   color: white;
@@ -485,7 +491,7 @@ button.add-new-projet {
   background-color: #b3b3b3;
   width: 100%;
 }
-/***style pour bouton "ajouter une photo" dans la modale***/
+/***style pour bouton "Ajouter une photo" dans la modale***/
 .add-new-projet {
   font-family: "Syne";
   font-weight: bold;
@@ -497,4 +503,23 @@ button.add-new-projet {
   border-radius: 60px;
   box-shadow: 0px 5px 0px gainsboro;
   height: 36px;
+}
+/****Styles pour 2ème Modale pour ajout photo****/
+.modal-content-ajout-photo {
+  background-color: white;
+  margin: 10% auto; /* Centre la modale verticalement */
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%; /* Largeur de la modale */
+  max-height: 60%;
+  position: relative;
+}
+/*style pour backArrow*/
+/* Styles pour la flèche de retour */
+.back-arrow {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }

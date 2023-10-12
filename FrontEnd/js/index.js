@@ -122,10 +122,10 @@ function genererProjetsInModal(projets) {
     imageElement.src = projet.imageUrl;
     projetDiv.appendChild(imageElement);
 
-    // Création du bouton "éditer" sous la photo
+    // Création du bouton "éditer" sous la photo : en définitive PAS BESOIN new version P3 !
     const editButton = document.createElement("button");
     editButton.textContent = "éditer";
-    projetDiv.appendChild(editButton);
+    // projetDiv.appendChild(editButton);
 
     // Création de l'icône "trash" en haut à droite de l'image
     const trashIcon = document.createElement("i");
@@ -135,7 +135,7 @@ function genererProjetsInModal(projets) {
     // Ajout du projet à la modal
     projetsModal.appendChild(projetDiv);
 
-    // Gestion du clic sur le bouton "Éditer"
+    //Gestion du clic sur le bouton "Éditer" = PAS BESOIN !
     editButton.addEventListener("click", () => {
       // Code pour gérer l'édition du projet
       console.log("éditer le projet : ", projet.title);
@@ -148,7 +148,7 @@ function genererProjetsInModal(projets) {
       console.log("Supprimer le projet : ", projet.title);
     });
   });
-  // je pense que la ligne et le bouton ajouter une photo ne sont pas au bon endroit car ils font partie d'un projet ?!!
+
   //création ligne grise en bas de la modale
   const lineBar = document.createElement("div");
   lineBar.classList.add("line-bar");
@@ -161,4 +161,20 @@ function genererProjetsInModal(projets) {
   ajouterPhoto.innerText = "Ajouter une photo";
   projetsModal.appendChild(addNewProjet);
   addNewProjet.appendChild(ajouterPhoto);
+
+  //Quand on clique sur le bouton "Ajouter une photo" cela "bascule" sur la modale "Ajout photo" ==> donc ça ferme la 1ere modale et ça ouvre la seconde
+  // Récupération du bouton "Ajouter une photo" dans la première modale
+  const ajouterPhotoButton = document.querySelector(".add-new-projet");
+
+  // Sélection de la deuxième modale
+  const modalAjoutPhoto = document.getElementById("modal-ajout-photo");
+
+  // Gestionnaire d'événement pour ouvrir la deuxième modale
+  ajouterPhotoButton.addEventListener("click", () => {
+    // Affiche la deuxième modale
+    modalAjoutPhoto.style.display = "block";
+
+    // Pour masquer la première modale
+    modal.style.display = "none";
+  });
 }
