@@ -117,7 +117,6 @@ function filterWorks(nameCategory, projets, btn) {
 
 function genererProjetsInModal(projets) {
   const projetsModal = document.querySelector(".projets-modal");
-  // const editButton = document.querySelector(".projet-modal button");
 
   projetsModal.innerHTML = ""; // Efface le contenu précédent de la modal
 
@@ -133,7 +132,7 @@ function genererProjetsInModal(projets) {
     // Création du bouton "éditer" sous la photo mais pas fonctionnel
     const editButton = document.createElement("button");
     editButton.textContent = "éditer";
-    editButton.classList.add("button");
+    editButton.classList.add("button", "editbutton");
     projetDiv.appendChild(editButton);
 
     // Création de l'icône "trash" en haut à droite de l'image

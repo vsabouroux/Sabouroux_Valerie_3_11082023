@@ -468,10 +468,12 @@ h3 {
   height: auto;
   object-fit: cover;
 }
-.button {
-  background-color: transparent;
+/**Pourquoi n'apparaissent-ils plus sur la page ????!!!**/
+.button,
+.editbutton {
+  background-color: red;
   font-size: 12px;
-  color: black;
+  color: rgb(224, 19, 176);
   border: none;
 }
 
