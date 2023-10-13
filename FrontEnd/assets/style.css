@@ -413,15 +413,16 @@ footer nav ul {
   margin: 10% auto; /* Centre la modale verticalement */
   padding: 20px;
   border-radius: 10px;
-  width: 60%; /* Largeur de la modale */
+  width: 50%; /* Largeur de la modale */
   max-height: 80%;
   position: relative;
-  overflow-y: scroll; /*Visiblement cela fait disparaître le border radius du côté du scroll ???*/
 }
 .galerie-photo {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 26px;
   text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 h3 {
   font-size: 16px;
@@ -444,16 +445,20 @@ h3 {
   box-shadow: 0px 3px 15px black (0, 0, 0, 0.1);
   cursor: pointer;
 }
-/**style sur images projets dans modal**/
+/**style sur  projets dans modal**/
 .projets-modal {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: auto;
+  gap: 9px;
+  max-width: 440px;
   margin-top: 30px;
   margin-bottom: 0px;
 }
 .projet-modal {
-  width: calc(20% - 10px); /* 4 colonnes avec espace entre elles */
+  width: 76px;
+  height: 102px;
   margin-bottom: 30px;
   position: relative;
   overflow: hidden;
@@ -461,26 +466,25 @@ h3 {
 .projets-modal img {
   width: 100%;
   height: auto;
+  object-fit: cover;
 }
-/*.projets-modal button {
+.button {
   background-color: transparent;
+  font-size: 12px;
+  color: black;
   border: none;
-  cursor: pointer;
-}*/
-button.add-new-projet {
-  background-color: #1d6154;
-  color: white;
-  margin-top: 20px;
 }
+
 .trash-icon {
   position: absolute;
   top: 10px;
   right: 10px;
   color: white;
+  width: 9px;
+  height: 11px;
   background-color: black;
   padding: 5px;
   border-radius: 5px;
-  font-size: 17px;
   cursor: pointer;
 }
 
@@ -489,10 +493,13 @@ button.add-new-projet {
 .line-bar {
   height: 1px;
   background-color: #b3b3b3;
-  width: 100%;
+  margin: 0 76px 0 76px;
 }
 /***style pour bouton "Ajouter une photo" dans la modale***/
 .add-new-projet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: "Syne";
   font-weight: bold;
   color: white;
@@ -522,4 +529,12 @@ button.add-new-projet {
   left: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+/*mauvais repérage du bouton submit ds 2ème modale*/
+input[type="submit"] add-new-projet {
+  background-color: #a7a7a7;
+}
+
+#modal-ajout-photo {
+  display: none;
 }

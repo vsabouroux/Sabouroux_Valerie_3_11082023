@@ -5,6 +5,8 @@ const modifierButton = document.querySelector(".modifier-button");
 const modal = document.getElementById("modal");
 const closeBtn = document.querySelector(".close");
 const modalcontent = document.querySelector(".modal-content");
+const modalAjoutPhoto = document.getElementById("modal-ajout-photo");
+const ajouterPhotoButton = document.querySelector(".add-new-projet");
 
 // Fonction pour fermer la modale
 function fermerModal() {
@@ -13,6 +15,15 @@ function fermerModal() {
 // Fonction pour ouvrir la modale
 function ouvrirModal() {
   modal.style.display = "block";
+}
+
+// Fonction pour fermer la modale
+function fermerModalPhoto() {
+  modalAjoutPhoto.style.display = "none";
+}
+// Fonction pour ouvrir la modale
+function ouvrirModalPhoto() {
+  modalAjoutPhoto.style.display = "block";
 }
 
 if (modifierButton) {
@@ -29,4 +40,19 @@ modal.addEventListener("click", fermerModal);
 // Stoper la propagation de fermeture de la modal
 modalcontent.addEventListener("click", (event) => {
   event.stopPropagation();
+});
+
+//Ecoute de l'événement clic pour redirection vers la 2ème modale
+// ajouterPhoto.addEventListener("click", () => {
+//   //je ferais bien une fonction "ouvrir 2ème modale" dans la fonction genererProjetsInModal
+// });
+
+// Sélection de la deuxième modale
+
+// Gestionnaire d'événement pour ouvrir la deuxième modale
+ajouterPhotoButton.addEventListener("click", () => {
+  // Affiche la deuxième modale
+  ouvrirModalPhoto();
+  // Pour masquer la première modale
+  fermerModal();
 });
