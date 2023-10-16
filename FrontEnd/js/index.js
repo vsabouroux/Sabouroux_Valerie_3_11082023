@@ -117,7 +117,7 @@ function filterWorks(nameCategory, projets, btn) {
 
 function genererProjetsInModal(projets) {
   const projetsModal = document.querySelector(".projets-modal");
-
+  const deleteProjet = document.querySelector(".projets-modal");
   projetsModal.innerHTML = ""; // Efface le contenu précédent de la modal
 
   projets.forEach((projet) => {
@@ -145,9 +145,44 @@ function genererProjetsInModal(projets) {
 
     // Gestion du clic sur l'icône "trash"
     trashIcon.addEventListener("click", () => {
-      // Code pour supprimer le projet
-      // demander une confirmation à l'utilisateur avant de supprimer le projet ??
-      console.log("Supprimer le projet : ", projet.title);
+      // Gestion du clic sur l'icône "trash"
+      trashIcon.addEventListener("click", () => {
+        // Demander une confirmation à l'utilisateur avant de supprimer le projet
+        const confirmation = window.confirm(
+          "Voulez-vous supprimer ce projet ?"
+        );
+
+        if (confirmation) {
+          // Supprimer le projet du DOM
+          projetsModal.removeChild(projetDiv);
+
+          // Code pour supprimer le projet du serveur
+          const tokenStocke = localStorage.getItem("token");
+          const chargeUtile = JSON.stringify(tokenStocke);
+          fetch(`http://localhost:5678/api/works/${projet.id}`, {
+            method: "DELETE",
+            body: chargeUtile,
+            headers: { "content-type": "application/json" }, //pour l'instant cela ne fonctionne pas bien car je pense que cela vient du fait que je ne sais pas
+            //encore dire que l'utilisateur qui veut supprimer le projet est bien authorisé à le faire puisque Token renvoyé
+            //est-ce que cette partie devrait être dans la pge login avec la ref au Token ? si oui comment alors faire le lien avec cette pge ?
+          })
+            .then((response) => {
+              if (response.ok) {
+                console.log("Le projet a été supprimé avec succès.");
+              } else {
+                console.error(
+                  "Une erreur s'est produite lors de la suppression du projet."
+                );
+              }
+            })
+            .catch((error) => {
+              console.error(
+                "Une erreur s'est produite lors de la suppression du projet :",
+                error
+              );
+            });
+        }
+      });
     });
   });
 }
