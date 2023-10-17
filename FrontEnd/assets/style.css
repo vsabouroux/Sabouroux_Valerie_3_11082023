@@ -519,8 +519,8 @@ h3 {
   margin: 10% auto; /* Centre la modale verticalement */
   padding: 20px;
   border-radius: 10px;
-  width: 60%; /* Largeur de la modale */
-  max-height: 60%;
+  width: 630px;
+  height: 670px;
   position: relative;
 }
 /*style pour backArrow*/
@@ -532,11 +532,41 @@ h3 {
   font-size: 20px;
   cursor: pointer;
 }
-/*mauvais repérage du bouton submit ds 2ème modale*/
-input[type="submit"] add-new-projet {
+
+#modal-ajout-photo form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+#modal-ajout-photo,
+#inputtitle,
+#categorie {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  height: 51px;
+  width: 420px;
+}
+#modal-ajout-photo,
+input#submit {
   background-color: #a7a7a7;
 }
 
 #modal-ajout-photo {
   display: none;
+}
+h3 {
+  text-align: center;
+  font-size: 26px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+input#img {
+  display: flex;
+  justify-content: center;
+  background-color: greenyellow;
+  border-radius: 3px;
+  height: 169px;
+  width: 420px;
 }
