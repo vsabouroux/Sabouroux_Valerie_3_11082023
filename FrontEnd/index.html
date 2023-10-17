@@ -111,7 +111,6 @@
     </div>
 
     <!-- Modal AJOUT PHOTO -->
-    <!--il va falloir faire un formulaire-->
     <div id="modal-ajout-photo">
       <div class="modal-content-ajout-photo">
         <span class="close">&times;</span>
@@ -124,23 +123,33 @@
           <!--dans "action" on mettra l'adresse de l'API ?-->
           <!-- <label for="img">xx</label> : besoin ???-->
           <!--je pense qu'il faudra faire un lien avec l'API ???-->
+
           <input
             type="file"
             name="img"
             id="img"
-            placeholder="jpg, png : 4mo max"
+            accept="image/jpg/png"
+            style="display: none"
             size="30"
             maxlength="20"
           />
+          <button id="uploadButton">+ Ajouter une photo</button>
+          <img
+            id="imagePreview"
+            src=""
+            alt="Aperçu de l'image"
+            style="display: none"
+          />
 
           <label for="name">Titre</label>
-          <input type="text" name="name" id="title" />
+          <input type="text" name="name" id="title" required />
 
           <label for="categorie">Catégorie</label>
           <select name="categorie" id="categorie">
-            <!-- A générer depuis index.js <option value="xxx">????</option>-->
+            <!-- A générer depuis modal.js <option value="</option>-->
           </select>
-          <input type="submit" value="Valider" /><br />
+          <div class="line-bar-ajout-photo"></div>
+          <input id="ajout-submit" type="submit" value="Valider" />
         </form>
       </div>
     </div>

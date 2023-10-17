@@ -7,6 +7,7 @@ const closeBtn = document.querySelector(".close");
 const modalcontent = document.querySelector(".modal-content");
 const modalAjoutPhoto = document.getElementById("modal-ajout-photo");
 const ajouterPhotoButton = document.querySelector(".add-new-projet");
+const imageNewProjet = document;
 
 // Fonction pour fermer la modale
 function fermerModal() {
@@ -53,6 +54,38 @@ modalcontent.addEventListener("click", (event) => {
 ajouterPhotoButton.addEventListener("click", () => {
   // Affiche la deuxième modale
   ouvrirModalPhoto();
-  // Pour masquer la première modale
+  //pour envoyer les choix de catégories sur la page web pour que l'utilisateur en sélectionne une
+  const categorieSelect = document.getElementById("categorie");
+
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category.id;
+    option.textContent = category.name;
+    categorieSelect.appendChild(option);
+  });
+  //pour ajouter une photo et la placer dans l'espace créé à cet effet
+  const ajouterNewPhoto = document.getElementById("img");
+
+  const uploadButton = document.getElementById("uploadButton");
+
+  uploadButton.addEventListener("click", () => {
+    fileInput.click(); // Ouvre la boîte de dialogue de sélection de fichiers
+
+    fileInput.addEventListener("change", (event) => {
+      const selectedFile = event.target.files[0]; // Récupère le fichier sélectionné
+
+      if (selectedFile) {
+        const image = new Image();
+        image.src = URL.createObjectURL(selectedFile);
+
+        // Ajoute l'image à l'élément "ajouterNewPhoto"
+        ajouterNewPhoto.appendChild(image);
+
+        // Ferme la modal après avoir ajouté la photo
+        fermerModalPhoto();
+      }
+    });
+  });
+
   fermerModal();
 });
