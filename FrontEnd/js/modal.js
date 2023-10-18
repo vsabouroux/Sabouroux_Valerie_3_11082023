@@ -6,8 +6,11 @@ const modal = document.getElementById("modal");
 const closeBtn = document.querySelector(".close");
 const modalcontent = document.querySelector(".modal-content");
 const modalAjoutPhoto = document.getElementById("modal-ajout-photo");
+//ajouterPhotoButton concerne le bouton sur la 1ère modale
 const ajouterPhotoButton = document.querySelector(".add-new-projet");
-const imageNewProjet = document;
+//concerne la 2ème modale
+const uploadButton = document.getElementById("uploadButton");
+const imageUploaded = document.querySelector("file");
 
 // Fonction pour fermer la modale
 function fermerModal() {
@@ -43,11 +46,6 @@ modalcontent.addEventListener("click", (event) => {
   event.stopPropagation();
 });
 
-//Ecoute de l'événement clic pour redirection vers la 2ème modale
-// ajouterPhoto.addEventListener("click", () => {
-//   //je ferais bien une fonction "ouvrir 2ème modale" dans la fonction genererProjetsInModal
-// });
-
 // Sélection de la deuxième modale
 
 // Gestionnaire d'événement pour ouvrir la deuxième modale
@@ -63,29 +61,64 @@ ajouterPhotoButton.addEventListener("click", () => {
     option.textContent = category.name;
     categorieSelect.appendChild(option);
   });
-  //pour ajouter une photo et la placer dans l'espace créé à cet effet
-  const ajouterNewPhoto = document.getElementById("img");
 
-  const uploadButton = document.getElementById("uploadButton");
+  // Fonction pour envoyer l'image au serveur avec titre et catégorie
+  function envoyerImageAuServeur(imageUploaded, title, categorie) {
+    const formData = new FormData();
+    formData.append("image", imageUploaded);
+    formData.append("title", title);
+    formData.append("category.id", categorie);
+    console.log(imageUploaded, title, categori);
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("L'image a été téléchargée avec succès.");
+          // Ajoutez ici la logique pour gérer la réponse du serveur, si nécessaire.
+        } else {
+          console.error(
+            "Une erreur s'est produite lors du téléchargement de l'image."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "Une erreur s'est produite lors du téléchargement de l'image :",
+          error
+        );
+      });
+  }
+
+  const imgInput = document.getElementById("img");
 
   uploadButton.addEventListener("click", () => {
-    fileInput.click(); // Ouvre la boîte de dialogue de sélection de fichiers
-
-    fileInput.addEventListener("change", (event) => {
-      const selectedFile = event.target.files[0]; // Récupère le fichier sélectionné
-
-      if (selectedFile) {
-        const image = new Image();
-        image.src = URL.createObjectURL(selectedFile);
-
-        // Ajoute l'image à l'élément "ajouterNewPhoto"
-        ajouterNewPhoto.appendChild(image);
-
-        // Ferme la modal après avoir ajouté la photo
-        fermerModalPhoto();
-      }
-    });
+    // Ouvre la boîte de dialogue de sélection de fichiers
+    imgInput.click();
   });
+  imgInput.addEventListener("change", (event) => {
+    const selectedFile = event.target.files[0]; // Récupère le fichier sélectionné
 
-  fermerModal();
+    if (selectedFile) {
+      const titreInput = document.getElementById("title");
+      const titre = titreInput.value;
+
+      const categorieSelect = document.getElementById("categorie");
+      const selectedCategoryId = categorieSelect.value;
+
+      // Envoyer l'image au serveur avec le titre et l'ID de catégorie sélectionnée
+      envoyerImageAuServeur(selectedFile, titre, selectedCategoryId);
+
+      // Ajoute l'image à l'élément "imagePreview" pour affichage
+      const imagePreview = document.getElementById("imagePreview");
+      imagePreview.src = URL.createObjectURL(selectedFile);
+      imagePreview.style.display = "block";
+
+      // Ferme la modal après avoir ajouté la photo
+      fermerModalPhoto();
+      //manque l'envoi de la nouvelle photo sur la page web
+    }
+  });
 });
+fermerModal();

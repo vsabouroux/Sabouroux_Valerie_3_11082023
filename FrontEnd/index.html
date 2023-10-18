@@ -119,14 +119,15 @@
         <h3>Ajout photo</h3>
 
         <div class="ajout-newPhotoProjet"></div>
-        <form action="#" method="post">
+        <form action="http://localhost:5678/api/works" method="post">
           <!--dans "action" on mettra l'adresse de l'API ?-->
           <!-- <label for="img">xx</label> : besoin ???-->
           <!--je pense qu'il faudra faire un lien avec l'API ???-->
 
           <input
             type="file"
-            name="img"
+            required=""
+            name="image"
             id="img"
             accept="image/jpg/png"
             style="display: none"
@@ -142,7 +143,7 @@
           />
 
           <label for="name">Titre</label>
-          <input type="text" name="name" id="title" required />
+          <input type="text" name="name" id="title" required="" />
 
           <label for="categorie">Catégorie</label>
           <select name="categorie" id="categorie">
