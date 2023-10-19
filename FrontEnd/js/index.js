@@ -129,6 +129,7 @@ function genererProjetsInModal(projets) {
     projetDiv.appendChild(imageElement);
 
     // Création du bouton "éditer" sous la photo mais pas fonctionnel
+    //mainte
     const editButton = document.createElement("button");
     editButton.textContent = "éditer";
     editButton.classList.add("button", "editbutton");

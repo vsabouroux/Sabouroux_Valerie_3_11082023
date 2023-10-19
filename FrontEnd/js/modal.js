@@ -68,7 +68,7 @@ ajouterPhotoButton.addEventListener("click", () => {
     formData.append("image", imageUploaded);
     formData.append("title", title);
     formData.append("category.id", categorie);
-    console.log(imageUploaded, title, categori);
+    console.log(imageUploaded, title, categorie);
     fetch("http://localhost:5678/api/works", {
       method: "POST",
       body: formData,
@@ -83,6 +83,7 @@ ajouterPhotoButton.addEventListener("click", () => {
           );
         }
       })
+      //sert à comprendre l'erreur de code ?
       .catch((error) => {
         console.error(
           "Une erreur s'est produite lors du téléchargement de l'image :",
