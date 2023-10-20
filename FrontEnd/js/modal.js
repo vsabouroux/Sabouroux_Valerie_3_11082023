@@ -10,6 +10,7 @@ const modalAjoutPhoto = document.getElementById("modal-ajout-photo");
 const ajouterPhotoButton = document.querySelector(".add-new-projet");
 const formPhoto = document.getElementById("formPhoto"); //pour réinitialiser le formulaire
 //Concerne la 2ème modale
+const closeBtnPhoto = document.querySelector(".closePhoto");
 // Création de l'icône "image" dans le cadre bleuté de l'ajout photo ça NE FONCTIONNE PAS !!!
 const cadrePhoto = document.querySelector(".ajout-newPhotoProjet");
 const photoIcon = document.createElement("i");
@@ -100,7 +101,9 @@ formPhoto.addEventListener("submit", (e) => {
 });
 
 // GESTION du formulaire en cours pour réinitialiser le formulaire d'ajout qd l'utilisateur à cliquer sur le bouton "valider"
-
+// Ajout gestionnaire d'événement click au bouton de fermeture (X)
+closeBtn.addEventListener("click", fermerModal);
+fermerModal();
 // Ferme la modal après avoir ajouté la photo
 // Fonction pour envoyer l'image au serveur avec titre et catégorie
 function envoyerImageAuServeur() {
