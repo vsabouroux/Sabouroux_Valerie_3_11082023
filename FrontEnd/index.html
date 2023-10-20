@@ -81,7 +81,7 @@
           <input type="email" name="email" id="email" />
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer" />
+          <input id="submit" type="submit" value="Envoyer" />
         </form>
       </section>
     </main>
@@ -119,14 +119,13 @@
         <h3>Ajout photo</h3>
 
         <div class="ajout-newPhotoProjet"></div>
-        <form action="http://localhost:5678/api/works" method="post">
+        <form id="formPhoto" method="post">
           <!--dans "action" on mettra l'adresse de l'API ?-->
           <!-- <label for="img">xx</label> : besoin ???-->
           <!--je pense qu'il faudra faire un lien avec l'API ???-->
 
           <input
             type="file"
-            required=""
             name="image"
             id="img"
             accept="image/jpg/png"

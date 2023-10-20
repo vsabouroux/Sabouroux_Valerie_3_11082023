@@ -221,6 +221,8 @@ nav a:focus {
   border: none;
   box-shadow: 0px 3px 10px gainsboro;
   margin-bottom: 20px;
+  width: 379px;
+  height: 51px;
 }
 /**fin page login**/
 
@@ -325,29 +327,35 @@ nav a:focus {
 }
 
 #contact input {
-  height: 50px;
+  height: 51px;
+  width: 379px;
   font-size: 1.2em;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin: auto;
 }
+
 #contact label {
   margin: 2em 0 1em 0;
+  padding-left: 95px;
 }
 #contact textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  width: 379px;
+  margin: auto;
 }
 
-input[type="submit"] {
+input#submit[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
   color: white;
   background-color: #1d6154;
   margin: 2em auto;
-  width: 180px;
   text-align: center;
   border-radius: 60px;
   box-shadow: 0px 5px 0px gainsboro;
+  width: 179px;
   height: 36px;
 }
 
@@ -471,9 +479,8 @@ h3 {
 /**Pourquoi n'apparaissent-ils plus sur la page ????!!!**/
 .button,
 .editbutton {
-  background-color: red;
+  background-color: transparent;
   font-size: 12px;
-  color: rgb(224, 19, 176);
   border: none;
 }
 
@@ -482,8 +489,7 @@ h3 {
   top: 10px;
   right: 10px;
   color: white;
-  width: 9px;
-  height: 11px;
+  height: 14px;
   background-color: black;
   padding: 5px;
   border-radius: 5px;
@@ -539,6 +545,7 @@ h3 {
   align-items: center;
   margin-top: 30px;
 }
+
 #modal-ajout-photo,
 input#submit {
   background-color: #a7a7a7;

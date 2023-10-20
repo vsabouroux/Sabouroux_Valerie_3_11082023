@@ -1,22 +1,25 @@
-let categories = [];
+let categories;
 
 // récupération des WORKS sur le localhost du BackEnd dans lesquels il y a la catégorie embarquée
-fetch("http://localhost:5678/api/works")
-  .then((response) => response.json())
-  .then((projets) => {
-    console.log(projets);
-    genererProjets(projets);
-    genererCategories(categories, projets);
-    console.log(categories);
-    genererProjetsInModal(projets);
-  })
-  .catch((error) => {
-    console.error(
-      "Une erreur s'est produite lors de la récupération des données :",
-      error
-    );
-  });
-
+function init() {
+  fetch("http://localhost:5678/api/works")
+    .then((response) => response.json())
+    .then((projets) => {
+      categories = [];
+      console.log(projets);
+      genererProjets(projets);
+      genererCategories(categories, projets);
+      console.log(categories);
+      genererProjetsInModal(projets);
+    })
+    .catch((error) => {
+      console.error(
+        "Une erreur s'est produite lors de la récupération des données :",
+        error
+      );
+    });
+}
+init();
 //utilisation await et async pour récupérer les catégories embarquées ds works et attendre les traitements à venir
 
 //Chaque projet "embarque" la CATEGORIE donc idée d'inserer dans la boucle for of l'écoute du clic
@@ -69,6 +72,10 @@ function genererCategories(categories, projets) {
 
   //Au clic d'un bouton de catégorie, afficher les projets par catégorie
   divFiltres = document.querySelector(".filtres");
+  divFiltres.innerHTML = "";
+
+  const categorieSelect = document.getElementById("categorie");
+  categorieSelect.innerHTML = "";
 
   // Création du bouton "Tous"
   const btnTous = document.createElement("button");
@@ -81,6 +88,8 @@ function genererCategories(categories, projets) {
 
   divFiltres.appendChild(btnTous);
 
+  console.log(categories);
+
   for (const category of categories) {
     // Création des boutons pour chaque catégorie
     const btnCategory = document.createElement("button");
@@ -92,11 +101,20 @@ function genererCategories(categories, projets) {
 
     divFiltres.appendChild(btnCategory);
 
-    createCategorieOption(category);
+    createCategorieOption(category, categorieSelect);
   }
 }
 
-function createCategorieOption(category) {}
+function createCategorieOption(category, categorieSelect) {
+  //pour envoyer les choix de catégories sur la page web pour que l'utilisateur en sélectionne une
+
+  // categories.forEach((category) => {
+  const option = document.createElement("option");
+  option.value = category.id;
+  option.textContent = category.name;
+  categorieSelect.appendChild(option);
+  // });
+}
 
 function filterWorks(nameCategory, projets, btn) {
   const exActiveFilter = document.querySelector(".filtres button.active");
@@ -172,6 +190,7 @@ function genererProjetsInModal(projets) {
           .then((response) => {
             if (response.ok) {
               console.log("Le projet a été supprimé avec succès.");
+              init();
             } else {
               console.error(
                 "Une erreur s'est produite lors de la suppression du projet."

@@ -11,6 +11,8 @@ const ajouterPhotoButton = document.querySelector(".add-new-projet");
 //concerne la 2ème modale
 const uploadButton = document.getElementById("uploadButton");
 const imageUploaded = document.querySelector("file");
+const formPhoto = document.getElementById("formPhoto");
+const imgInput = document.getElementById("img");
 
 // Fonction pour fermer la modale
 function fermerModal() {
@@ -52,74 +54,75 @@ modalcontent.addEventListener("click", (event) => {
 ajouterPhotoButton.addEventListener("click", () => {
   // Affiche la deuxième modale
   ouvrirModalPhoto();
-  //pour envoyer les choix de catégories sur la page web pour que l'utilisateur en sélectionne une
-  const categorieSelect = document.getElementById("categorie");
-
-  categories.forEach((category) => {
-    const option = document.createElement("option");
-    option.value = category.id;
-    option.textContent = category.name;
-    categorieSelect.appendChild(option);
-  });
-
-  // Fonction pour envoyer l'image au serveur avec titre et catégorie
-  function envoyerImageAuServeur(imageUploaded, title, categorie) {
-    const formData = new FormData();
-    formData.append("image", imageUploaded);
-    formData.append("title", title);
-    formData.append("category.id", categorie);
-    console.log(imageUploaded, title, categorie);
-    fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("L'image a été téléchargée avec succès.");
-          // Ajoutez ici la logique pour gérer la réponse du serveur, si nécessaire.
-        } else {
-          console.error(
-            "Une erreur s'est produite lors du téléchargement de l'image."
-          );
-        }
-      })
-      //sert à comprendre l'erreur de code ?
-      .catch((error) => {
-        console.error(
-          "Une erreur s'est produite lors du téléchargement de l'image :",
-          error
-        );
-      });
-  }
-
-  const imgInput = document.getElementById("img");
-
-  uploadButton.addEventListener("click", () => {
-    // Ouvre la boîte de dialogue de sélection de fichiers
-    imgInput.click();
-  });
-  imgInput.addEventListener("change", (event) => {
-    const selectedFile = event.target.files[0]; // Récupère le fichier sélectionné
-
-    if (selectedFile) {
-      const titreInput = document.getElementById("title");
-      const titre = titreInput.value;
-
-      const categorieSelect = document.getElementById("categorie");
-      const selectedCategoryId = categorieSelect.value;
-
-      // Envoyer l'image au serveur avec le titre et l'ID de catégorie sélectionnée
-      envoyerImageAuServeur(selectedFile, titre, selectedCategoryId);
-
-      // Ajoute l'image à l'élément "imagePreview" pour affichage
-      const imagePreview = document.getElementById("imagePreview");
-      imagePreview.src = URL.createObjectURL(selectedFile);
-      imagePreview.style.display = "block";
-
-      // Ferme la modal après avoir ajouté la photo
-      fermerModalPhoto();
-      //manque l'envoi de la nouvelle photo sur la page web
-    }
-  });
+  fermerModal();
 });
-fermerModal();
+
+uploadButton.addEventListener("click", () => {
+  // Ouvre la boîte de dialogue de sélection de fichiers
+  imgInput.click();
+});
+
+imgInput.addEventListener("change", (event) => {
+  const selectedFile = event.target.files[0]; // Récupère le fichier sélectionné
+
+  if (selectedFile) {
+    // Ajoute l'image à l'élément "imagePreview" pour affichage
+    const imagePreview = document.getElementById("imagePreview");
+    imagePreview.src = URL.createObjectURL(selectedFile);
+    imagePreview.style.display = "block";
+  }
+});
+
+formPhoto.addEventListener("submit", (e) => {
+  e.preventDefault();
+  envoyerImageAuServeur();
+});
+
+// GESTION du formulaire
+
+// Fonction pour envoyer l'image au serveur avec titre et catégorie
+function envoyerImageAuServeur() {
+  const imageUploaded = imgInput.files[0];
+
+  const titreInput = document.getElementById("title");
+  const titre = titreInput.value;
+
+  const categorieSelect = document.getElementById("categorie");
+  const selectedCategoryId = categorieSelect.value;
+
+  const token = localStorage.getItem("token");
+
+  const formData = new FormData();
+  formData.append("image", imageUploaded);
+  formData.append("title", titre);
+  formData.append("category", selectedCategoryId);
+  console.log(imageUploaded, titre, selectedCategoryId);
+
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("L'image a été téléchargée avec succès.");
+        // Ajoutez ici la logique pour gérer la réponse du serveur, si nécessaire.
+        init();
+        // Ferme la modal après avoir ajouté la photo
+        fermerModalPhoto();
+      } else {
+        console.error(
+          "Une erreur s'est produite lors du téléchargement de l'image."
+        );
+      }
+    })
+    //sert à comprendre l'erreur de code ?
+    .catch((error) => {
+      console.error(
+        "Une erreur s'est produite lors du téléchargement de l'image :",
+        error
+      );
+    });
+}
