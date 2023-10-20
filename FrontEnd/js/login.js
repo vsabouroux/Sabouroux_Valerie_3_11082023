@@ -2,6 +2,9 @@
 //c'est le serveur qui crée ce token après envoi des infos par l'utilisateur
 
 let form = document.querySelector("form");
+// essai pour donner du style au bouton du login
+//const connexionButton = document.createElement("div");
+//connexionButton.classList.add("connexionButton"); // Ajout d'une classe CSS pour le style
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -35,7 +38,6 @@ form.addEventListener("submit", (event) => {
           // Rediriger vers la page d'accueil
           window.location.href = "index.html";
           //à partir du moment où il y a un token ds le localStorage alors afficher la barre d'étition et les 2 boutons (new version) pour les modifs sur la page HTML
-          // Est-ce que le token existe dans le localStorage cf. admin.js le console.log
         } else {
           // Afficher un message d'erreur
           const messageRenvoye = document.querySelector(".message");
@@ -54,4 +56,3 @@ form.addEventListener("submit", (event) => {
 //   let chaine = "test";
 //  let regex = newRegExp ("^[a-z 0-9._-]$");
 //   let resultat = regex.test(chaine);
-// console.log(resultat);

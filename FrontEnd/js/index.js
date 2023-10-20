@@ -134,7 +134,7 @@ function filterWorks(nameCategory, projets, btn) {
 function genererProjetsInModal(projets) {
   const projetsModal = document.querySelector(".projets-modal");
   //probleme avec "deleteProjet" ???
-  const deleteProjet = document.querySelector(".projets-modal");
+  //const deleteProjet = document.querySelector(".projets-modal");
   projetsModal.innerHTML = ""; // Efface le contenu précédent de la modal
 
   projets.forEach((projet) => {

@@ -224,6 +224,7 @@ nav a:focus {
   width: 379px;
   height: 51px;
 }
+
 /**fin page login**/
 
 #introduction {
@@ -346,7 +347,7 @@ nav a:focus {
   margin: auto;
 }
 
-input#submit[type="submit"] {
+input#submit-contact[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -404,7 +405,7 @@ footer nav ul {
   color: black;
 }
 
-/*** Style pour la modale ***/
+/*** Style pour la 1èremodale ***/
 #modal {
   display: none; /* Masque la modale par défaut */
   position: fixed; /* Positionnement fixe pour la superposer à la page */
@@ -453,7 +454,7 @@ h3 {
   box-shadow: 0px 3px 15px black (0, 0, 0, 0.1);
   cursor: pointer;
 }
-/**style sur  projets dans modal**/
+/**style sur  projets dans 1ere modale**/
 .projets-modal {
   display: flex;
   flex-wrap: wrap;
@@ -476,7 +477,6 @@ h3 {
   height: auto;
   object-fit: cover;
 }
-/**Pourquoi n'apparaissent-ils plus sur la page ????!!!**/
 .button,
 .editbutton {
   background-color: transparent;
@@ -495,15 +495,12 @@ h3 {
   border-radius: 5px;
   cursor: pointer;
 }
-
-/*** ligne grise sous les photos de la modale***/
-/*en cours...!!!*/
 .line-bar {
   height: 1px;
   background-color: #b3b3b3;
   margin: 0 76px 0 76px;
 }
-/***style pour bouton "Ajouter une photo" dans la modale***/
+/***style pour bouton "Ajouter une photo" dans 1ère modale***/
 .add-new-projet {
   display: flex;
   justify-content: center;
@@ -562,14 +559,19 @@ h3 {
   margin-top: 40px;
   margin-bottom: 40px;
 }
-input#img {
+
+.ajout-newPhotoProjet {
   display: flex;
-  justify-content: center;
+  margin: auto;
   background-color: #e8f1f6;
   border-radius: 3px;
   height: 169px;
   width: 420px;
-  margin-bottom: 30px;
+}
+.ajout-newPhotoProjet p {
+  margin-top: 150px;
+  margin-left: 160px;
+  font-size: 10px;
 }
 input[type="text" i],
 #inputtitle,
@@ -579,7 +581,24 @@ input[type="text" i],
   margin-top: 10px;
   margin-bottom: 20px;
   border: none;
-  box-shadow: 0px 0px 7px rgb(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 7px rgb(0, 0, 0, 0.2);
+}
+.fa-regular.fa-image {
+  display: block;
+  justify-content: center;
+  background-color: #e8f1f6;
+  position: absolute;
+  opacity: 0.2;
+  width: 76px;
+  font-size: 76px;
+  margin-left: 170px;
+  margin-top: 20px;
+  box-shadow: 0 0 px red;
+}
+.cadre-photo {
+  position: absolute;
+  top: 230px;
+  left: 250px;
 }
 #uploadButton {
   background-color: #cbd6dc;
@@ -593,10 +612,27 @@ input[type="text" i],
 .line-bar-ajout-photo {
   height: 1px;
   width: 420px;
-  width: 420px;
   margin-top: 30px;
   background-color: #a7a7a7;
 }
 input#ajout-submit {
   background-color: #a7a7a7;
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  border-style: none;
+  color: white;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+/***Pb car je pense qu'il ne les trouve pas car pas créés !!!??? **/
+.button-disabled {
+  background-color: hotpink;
+  color: white;
+}
+
+.button-enabled {
+  background-color: greenyellow;
+  color: white;
 }

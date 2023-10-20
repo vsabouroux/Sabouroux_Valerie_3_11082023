@@ -8,11 +8,20 @@ const modalcontent = document.querySelector(".modal-content");
 const modalAjoutPhoto = document.getElementById("modal-ajout-photo");
 //ajouterPhotoButton concerne le bouton sur la 1ère modale
 const ajouterPhotoButton = document.querySelector(".add-new-projet");
-//concerne la 2ème modale
+const formPhoto = document.getElementById("formPhoto"); //pour réinitialiser le formulaire
+//Concerne la 2ème modale
+// Création de l'icône "image" dans le cadre bleuté de l'ajout photo ça NE FONCTIONNE PAS !!!
+const cadrePhoto = document.querySelector(".ajout-newPhotoProjet");
+const photoIcon = document.createElement("i");
+photoIcon.classList.add("fa-regular", "fa-image");
+const formatImage = document.createElement("p");
+formatImage.innerText = "jpg, png : 4mo max";
 const uploadButton = document.getElementById("uploadButton");
+
 const imageUploaded = document.querySelector("file");
-const formPhoto = document.getElementById("formPhoto");
+
 const imgInput = document.getElementById("img");
+const ajoutSubmitButton = document.getElementById("ajout-submit");
 
 // Fonction pour fermer la modale
 function fermerModal() {
@@ -26,6 +35,10 @@ function ouvrirModal() {
 // Fonction pour fermer la modale
 function fermerModalPhoto() {
   modalAjoutPhoto.style.display = "none";
+
+  // Pour mise à jour du style du bouton lorsque l'utilisateur a téléchargé une photo
+  ajoutSubmitButton.classList.remove("button-disabled");
+  ajoutSubmitButton.classList.add("button-enabled");
 }
 // Fonction pour ouvrir la modale
 function ouvrirModalPhoto() {
@@ -50,13 +63,17 @@ modalcontent.addEventListener("click", (event) => {
 
 // Sélection de la deuxième modale
 
-// Gestionnaire d'événement pour ouvrir la deuxième modale
+// Gestion de l'événement pour ouvrir la deuxième modale
 ajouterPhotoButton.addEventListener("click", () => {
   // Affiche la deuxième modale
   ouvrirModalPhoto();
+  //Gestion de l'événement pour fermer la 2ème modale
+  closeBtn.addEventListener("click", fermerModal);
   fermerModal();
+  //modalAjoutPhoto.addEventListener("click", (event) => {
+  //  event.stopPropagation();
+  // });
 });
-
 uploadButton.addEventListener("click", () => {
   // Ouvre la boîte de dialogue de sélection de fichiers
   imgInput.click();
@@ -76,10 +93,15 @@ imgInput.addEventListener("change", (event) => {
 formPhoto.addEventListener("submit", (e) => {
   e.preventDefault();
   envoyerImageAuServeur();
+  formPhoto.reset();
+  // Réinitialise le style du bouton
+  ajoutSubmitButton.classList.remove("button-enabled");
+  ajoutSubmitButton.classList.add("button-disabled");
 });
 
-// GESTION du formulaire
+// GESTION du formulaire en cours pour réinitialiser le formulaire d'ajout qd l'utilisateur à cliquer sur le bouton "valider"
 
+// Ferme la modal après avoir ajouté la photo
 // Fonction pour envoyer l'image au serveur avec titre et catégorie
 function envoyerImageAuServeur() {
   const imageUploaded = imgInput.files[0];
@@ -108,9 +130,9 @@ function envoyerImageAuServeur() {
     .then((response) => {
       if (response.ok) {
         console.log("L'image a été téléchargée avec succès.");
-        // Ajoutez ici la logique pour gérer la réponse du serveur, si nécessaire.
+
         init();
-        // Ferme la modal après avoir ajouté la photo
+
         fermerModalPhoto();
       } else {
         console.error(
@@ -118,7 +140,7 @@ function envoyerImageAuServeur() {
         );
       }
     })
-    //sert à comprendre l'erreur de code ?
+    //sert à comprendre l'erreur de code
     .catch((error) => {
       console.error(
         "Une erreur s'est produite lors du téléchargement de l'image :",
@@ -126,3 +148,5 @@ function envoyerImageAuServeur() {
       );
     });
 }
+cadrePhoto.appendChild(photoIcon);
+cadrePhoto.appendChild(formatImage);

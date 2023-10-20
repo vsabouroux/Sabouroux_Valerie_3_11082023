@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
-    <!--lien pour récupérer les icons de fontawesome pour le mode édition ça  fonctionne il faut modifier le free kit  !!! -->
+    <!--lien pour récupérer les icons de fontawesome avec le free kit  !!! -->
     <script
       src="https://kit.fontawesome.com/1606b7ebb3.js"
       crossorigin="anonymous"
@@ -81,7 +81,7 @@
           <input type="email" name="email" id="email" />
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input id="submit" type="submit" value="Envoyer" />
+          <input id="submit-contact" type="submit" value="Envoyer" />
         </form>
       </section>
     </main>
@@ -119,10 +119,18 @@
         <h3>Ajout photo</h3>
 
         <div class="ajout-newPhotoProjet"></div>
+        <div class="cadre-photo">
+          <img
+            id="imagePreview"
+            src=""
+            alt="Aperçu de l'image"
+            style="display: none"
+          />
+          <button id="uploadButton">+ Ajouter une photo</button>
+        </div>
         <form id="formPhoto" method="post">
-          <!--dans "action" on mettra l'adresse de l'API ?-->
+          <!--dans "action" on mettra l'adresse de l'API ? non car géré via js-->
           <!-- <label for="img">xx</label> : besoin ???-->
-          <!--je pense qu'il faudra faire un lien avec l'API ???-->
 
           <input
             type="file"
@@ -132,13 +140,6 @@
             style="display: none"
             size="30"
             maxlength="20"
-          />
-          <button id="uploadButton">+ Ajouter une photo</button>
-          <img
-            id="imagePreview"
-            src=""
-            alt="Aperçu de l'image"
-            style="display: none"
           />
 
           <label for="name">Titre</label>
