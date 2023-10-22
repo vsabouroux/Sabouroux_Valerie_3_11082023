@@ -224,7 +224,18 @@ nav a:focus {
   width: 379px;
   height: 51px;
 }
-
+input#submit-login[type="submit"] {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  text-align: center;
+  border-radius: 60px;
+  box-shadow: 0px 5px 0px gainsboro;
+  width: 179px;
+  height: 36px;
+}
 /**fin page login**/
 
 #introduction {
@@ -405,7 +416,7 @@ footer nav ul {
   color: black;
 }
 
-/*** Style pour la 1èremodale ***/
+/*** Style pour la 1ère modale ***/
 #modal {
   display: none; /* Masque la modale par défaut */
   position: fixed; /* Positionnement fixe pour la superposer à la page */
@@ -416,7 +427,7 @@ footer nav ul {
   background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
 }
 
-/* Style pour le contenu de la modale */
+/* Style pour le contenu de la 1ère modale */
 .modal-content {
   background-color: white;
   margin: 10% auto; /* Centre la modale verticalement */
@@ -570,12 +581,23 @@ h3 {
 
 .ajout-newPhotoProjet {
   display: flex;
+  position: relative;
   margin: auto;
   background-color: #e8f1f6;
   border-radius: 3px;
-  height: 169px;
+  /* height: 169px;*/
   width: 420px;
+  max-width: 100%;
+  max-height: 300px;
 }
+
+#imagePreview {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 .ajout-newPhotoProjet p {
   margin-top: 150px;
   margin-left: 160px;
@@ -604,9 +626,18 @@ input[type="text" i],
   box-shadow: 0 0 px red;
 }
 .cadre-photo {
+  display: flex;
   position: absolute;
-  top: 230px;
-  left: 250px;
+  /* top: 230px;
+  left: 250px;*/
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+}
+.cadre-photo img {
+  position: relative;
+  object-fit: cover;
 }
 #imagePreview {
   object-fit: contain;
