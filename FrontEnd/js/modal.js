@@ -98,20 +98,12 @@ imgInput.addEventListener("change", (event) => {
   }
 });
 
-formPhoto.addEventListener("submit", (e) => {
-  e.preventDefault();
-  envoyerImageAuServeur();
-  formPhoto.reset();
-  // Réinitialise le style du bouton
-  ajoutSubmitButton.classList.remove("button-enabled");
-  ajoutSubmitButton.classList.add("button-disabled");
-});
-
 // GESTION du formulaire en cours pour réinitialiser le formulaire d'ajout qd l'utilisateur à cliquer sur le bouton "valider"
 // Ajout gestionnaire d'événement click au bouton de fermeture (X)
 closeBtnPhoto.addEventListener("click", fermerModalPhoto);
 fermerModalPhoto();
 backArrow.addEventListener("click", revenirPagePrecedente);
+backArrow.addEventListener("click", fermerModalPhoto);
 
 // Ferme la modal après avoir ajouté la photo
 // Fonction pour envoyer l'image au serveur avec titre et catégorie
@@ -162,3 +154,12 @@ function envoyerImageAuServeur() {
 }
 cadrePhoto.appendChild(photoIcon);
 //cadrePhoto.appendChild(formatImage);
+formPhoto.addEventListener("submit", (e) => {
+  e.preventDefault();
+  envoyerImageAuServeur();
+
+  // Réinitialise le style du bouton
+  ajoutSubmitButton.classList.remove("button-enabled");
+  ajoutSubmitButton.classList.add("button-disabled");
+  formPhoto.reset();
+});

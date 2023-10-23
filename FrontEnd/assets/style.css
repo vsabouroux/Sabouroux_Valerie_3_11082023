@@ -463,7 +463,7 @@ h3 {
   font-size: 14px;
   font-weight: bold;
   padding: 15px 30px;
-  box-shadow: 0px 3px 15px black (0, 0, 0, 0.1);
+  box-shadow: black (0, 0, 0, 0.1);
   cursor: pointer;
 }
 /**style sur  projets dans 1ere modale**/
@@ -479,7 +479,7 @@ h3 {
 }
 .projet-modal {
   width: 76px;
-  height: 102px;
+  /* height: 102px;*/
   margin-bottom: 30px;
   position: relative;
   overflow: hidden;
@@ -579,16 +579,16 @@ h3 {
   margin-bottom: 40px;
 }
 
-.ajout-newPhotoProjet {
+/*.ajout-newPhotoProjet {
   display: flex;
   position: relative;
   margin: auto;
   background-color: #e8f1f6;
   border-radius: 3px;
-  /* height: 169px;*/
+  /* height: 169px;
   width: 420px;
   max-width: 100%;
-}
+}*/
 
 #imagePreview {
   display: block;
@@ -597,11 +597,11 @@ h3 {
   object-fit: contain;
 }
 
-.ajout-newPhotoProjet p {
+/*.ajout-newPhotoProjet p {
   margin-top: 150px;
   margin-left: 160px;
   font-size: 10px;
-}
+}*/
 input[type="text" i],
 #inputtitle,
 #categorie {
@@ -621,10 +621,11 @@ input[type="text" i],
   opacity: 0.2;
   width: 76px;
   font-size: 76px;
-  bottom: 100px;
+  bottom: 80px;
+
   /*margin-left: 170px;
-  margin-top: 20px;*/
-  box-shadow: 0 0 px red;
+  margin-top: 20px;
+  box-shadow: 0 0px red;*/
 }
 .cadre-photo {
   display: flex;
@@ -653,6 +654,9 @@ input[type="text" i],
   object-fit: contain;
 }*/
 
+.detailsImg {
+  margin-top: 40px;
+}
 #uploadButton {
   background-color: #cbd6dc;
   font-size: 14px;
@@ -661,6 +665,7 @@ input[type="text" i],
   height: 36px;
   border-radius: 50px;
   border: none;
+  margin-top: 10px;
 }
 .line-bar-ajout-photo {
   height: 1px;
