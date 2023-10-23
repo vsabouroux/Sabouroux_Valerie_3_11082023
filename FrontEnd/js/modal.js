@@ -10,13 +10,16 @@ const modalAjoutPhoto = document.getElementById("modal-ajout-photo");
 const ajouterPhotoButton = document.querySelector(".add-new-projet");
 const formPhoto = document.getElementById("formPhoto"); //pour réinitialiser le formulaire
 //Concerne la 2ème modale
+//Pour ouvrir, fermer et revenir en arrière sur la 2ème modale
 const closeBtnPhoto = document.querySelector(".closePhoto");
+const backArrow = document.getElementById("backArrow");
 // Création de l'icône "image" dans le cadre bleuté de l'ajout photo ça NE FONCTIONNE PAS !!!
-const cadrePhoto = document.querySelector(".ajout-newPhotoProjet");
+//const cadrePhoto = document.querySelector(".ajout-newPhotoProjet");
+const cadrePhoto = document.querySelector(".cadre-photo");
 const photoIcon = document.createElement("i");
 photoIcon.classList.add("fa-regular", "fa-image");
-const formatImage = document.createElement("p");
-formatImage.innerText = "jpg, png : 4mo max";
+//const formatImage = document.createElement("p");
+//formatImage.innerText = "jpg, png : 4mo max";
 const uploadButton = document.getElementById("uploadButton");
 
 const imageUploaded = document.querySelector("file");
@@ -24,16 +27,16 @@ const imageUploaded = document.querySelector("file");
 const imgInput = document.getElementById("img");
 const ajoutSubmitButton = document.getElementById("ajout-submit");
 
-// Fonction pour fermer la modale
+// Fonction pour fermer la 1ère modale
 function fermerModal() {
   modal.style.display = "none";
 }
-// Fonction pour ouvrir la modale
+// Fonction pour ouvrir la 1ère modale
 function ouvrirModal() {
   modal.style.display = "block";
 }
 
-// Fonction pour fermer la modale
+// Fonction pour fermer la 2ème modale
 function fermerModalPhoto() {
   modalAjoutPhoto.style.display = "none";
 
@@ -41,9 +44,13 @@ function fermerModalPhoto() {
   ajoutSubmitButton.classList.remove("button-disabled");
   ajoutSubmitButton.classList.add("button-enabled");
 }
-// Fonction pour ouvrir la modale
+// Fonction pour ouvrir la 2ème modale
 function ouvrirModalPhoto() {
   modalAjoutPhoto.style.display = "block";
+}
+//Fonction pour revenir à la page précédente
+function revenirPagePrecedente() {
+  modal.style.display = "block";
 }
 
 if (modifierButton) {
@@ -68,7 +75,7 @@ modalcontent.addEventListener("click", (event) => {
 ajouterPhotoButton.addEventListener("click", () => {
   // Affiche la deuxième modale
   ouvrirModalPhoto();
-  //Gestion de l'événement pour fermer la 2ème modale
+  //Gestion de l'événement pour fermer la  modale
   closeBtn.addEventListener("click", fermerModal);
   fermerModal();
   //modalAjoutPhoto.addEventListener("click", (event) => {
@@ -102,8 +109,10 @@ formPhoto.addEventListener("submit", (e) => {
 
 // GESTION du formulaire en cours pour réinitialiser le formulaire d'ajout qd l'utilisateur à cliquer sur le bouton "valider"
 // Ajout gestionnaire d'événement click au bouton de fermeture (X)
-closeBtn.addEventListener("click", fermerModal);
-fermerModal();
+closeBtnPhoto.addEventListener("click", fermerModalPhoto);
+fermerModalPhoto();
+backArrow.addEventListener("click", revenirPagePrecedente);
+
 // Ferme la modal après avoir ajouté la photo
 // Fonction pour envoyer l'image au serveur avec titre et catégorie
 function envoyerImageAuServeur() {
@@ -152,4 +161,4 @@ function envoyerImageAuServeur() {
     });
 }
 cadrePhoto.appendChild(photoIcon);
-cadrePhoto.appendChild(formatImage);
+//cadrePhoto.appendChild(formatImage);

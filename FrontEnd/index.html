@@ -118,9 +118,9 @@
 
         <h3>Ajout photo</h3>
 
-        <div class="ajout-newPhotoProjet"></div>
+        <!--<div class="ajout-newPhotoProjet"></div>-->
 
-        <div class="cadre-photo">
+        <!--  <div class="cadre-photo">
           <img
             id="imagePreview"
             src=""
@@ -128,21 +128,29 @@
             style="display: none"
           />
           <button id="uploadButton">+ Ajouter une photo</button>
-        </div>
+        </div>-->
         <form id="formPhoto" method="post">
           <!--dans "action" on mettra l'adresse de l'API ? non car géré via js-->
           <!-- <label for="img">xx</label> : besoin ???-->
-
-          <input
-            type="file"
-            name="image"
-            id="img"
-            accept="image/*"
-            style="display: none"
-            size="30"
-            maxlength="20"
-          />
-
+          <div class="cadre-photo">
+            <input
+              type="file"
+              name="image"
+              id="img"
+              accept="image/*"
+              style="display: none"
+              size="30"
+              maxlength="20"
+            />
+            <img
+              id="imagePreview"
+              src=""
+              alt="Aperçu de l'image"
+              style="display: none"
+            />
+            <button id="uploadButton">+ Ajouter une photo</button>
+            <p class="detailsImg">jpg, png : 4mo max</p>
+          </div>
           <label for="name">Titre</label>
           <input type="text" name="name" id="title" required="" />
 

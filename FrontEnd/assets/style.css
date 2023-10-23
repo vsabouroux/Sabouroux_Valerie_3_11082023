@@ -588,14 +588,13 @@ h3 {
   /* height: 169px;*/
   width: 420px;
   max-width: 100%;
-  max-height: 300px;
 }
 
 #imagePreview {
   display: block;
   height: 100%;
-  width: 100%;
-  object-fit: cover;
+  /*width: 100%;*/
+  object-fit: contain;
 }
 
 .ajout-newPhotoProjet p {
@@ -617,31 +616,43 @@ input[type="text" i],
   display: block;
   justify-content: center;
   background-color: #e8f1f6;
-  position: absolute;
+  /*position: absolute;*/
+  position: relative;
   opacity: 0.2;
   width: 76px;
   font-size: 76px;
-  margin-left: 170px;
-  margin-top: 20px;
+  bottom: 100px;
+  /*margin-left: 170px;
+  margin-top: 20px;*/
   box-shadow: 0 0 px red;
 }
 .cadre-photo {
   display: flex;
-  position: absolute;
-  /* top: 230px;
-  left: 250px;*/
-  top: 0;
-  left: 0;
+  position: relative;
+  margin: auto;
+  background-color: #e8f1f6;
+  border-radius: 3px;
+  height: 169px;
+  width: 420px;
+  /*max-width: 100%;*/
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* top: 230px;
+  left: 250px;*/
+  /* top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;*/
 }
-.cadre-photo img {
+/*.cadre-photo img {
   position: relative;
   object-fit: cover;
-}
-#imagePreview {
+}*/
+/*#imagePreview {
   object-fit: contain;
-}
+}*/
+
 #uploadButton {
   background-color: #cbd6dc;
   font-size: 14px;
