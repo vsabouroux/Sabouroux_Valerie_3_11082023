@@ -26,7 +26,6 @@ const imageUploaded = document.querySelector("file");
 
 const imgInput = document.getElementById("img");
 const ajoutSubmitButton = document.getElementById("ajout-submit");
-
 // Fonction pour fermer la 1ère modale
 function fermerModal() {
   modal.style.display = "none";
@@ -39,10 +38,11 @@ function ouvrirModal() {
 // Fonction pour fermer la 2ème modale
 function fermerModalPhoto() {
   modalAjoutPhoto.style.display = "none";
+  resetForm(); // Appelle la fonction pour réinitialiser le formulaire
 
   // Pour mise à jour du style du bouton lorsque l'utilisateur a téléchargé une photo
-  ajoutSubmitButton.classList.remove("button-disabled");
-  ajoutSubmitButton.classList.add("button-enabled");
+  //ajoutSubmitButton.classList.remove("button-disabled");
+  // ajoutSubmitButton.classList.add("button-enabled");
 }
 // Fonction pour ouvrir la 2ème modale
 function ouvrirModalPhoto() {
@@ -101,11 +101,10 @@ imgInput.addEventListener("change", (event) => {
 // GESTION du formulaire en cours pour réinitialiser le formulaire d'ajout qd l'utilisateur à cliquer sur le bouton "valider"
 // Ajout gestionnaire d'événement click au bouton de fermeture (X)
 closeBtnPhoto.addEventListener("click", fermerModalPhoto);
-fermerModalPhoto();
+//fermerModalPhoto();
 backArrow.addEventListener("click", revenirPagePrecedente);
 backArrow.addEventListener("click", fermerModalPhoto);
 
-// Ferme la modal après avoir ajouté la photo
 // Fonction pour envoyer l'image au serveur avec titre et catégorie
 function envoyerImageAuServeur() {
   const imageUploaded = imgInput.files[0];
@@ -159,7 +158,31 @@ formPhoto.addEventListener("submit", (e) => {
   envoyerImageAuServeur();
 
   // Réinitialise le style du bouton
+  form.addEventListener("input", () => {
+    if (form.checkValidity()) {
+      ajoutSubmitButton.classList.add("active");
+      ajoutSubmitButton.disabled = false;
+    } else {
+      ajoutSubmitButton.classList.remove("active");
+      ajoutSubmitButton.disabled = true;
+    }
+  });
   ajoutSubmitButton.classList.remove("button-enabled");
   ajoutSubmitButton.classList.add("button-disabled");
+  //Pour réinitialiser le formulaire après envoi des données au serveur
   formPhoto.reset();
 });
+
+//Fonction pour réinitialiser le formulaire si l'utilisateur ne va pas au bout du formulaire
+function resetForm() {
+  const imagePreview = document.getElementById("imagePreview");
+  const titreInput = document.getElementById("title");
+  const categorieSelect = document.getElementById("categorie");
+
+  // Réinitialise les champs du formulaire
+  imagePreview.style.display = "none";
+  titreInput.value = "";
+  categorieSelect.selectedIndex = 0;
+  imgInput.value = ""; // Réinitialise le champ de téléchargement de fichier
+}
+resetForm();

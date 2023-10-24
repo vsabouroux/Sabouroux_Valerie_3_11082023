@@ -210,17 +210,28 @@ nav a:focus {
   flex-direction: column;
   align-items: center;
 }
-#login label {
+
+/*#login label {
   margin-bottom: 10px;
   margin-top: 5px;
+}*/
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer le contenu de chaque paire label-input */
+  margin-bottom: 20px;
+  width: 379px;
 }
-
+.input-container label {
+  align-self: flex-start;
+  margin-bottom: 15px;
+}
 #email,
 #motdepasse {
-  padding: 10px 5px 10px 5px;
+  padding: 10px 5px;
   border: none;
   box-shadow: 0px 3px 10px gainsboro;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px;*/
   width: 379px;
   height: 51px;
 }
@@ -685,12 +696,12 @@ input#ajout-submit {
 }
 
 /***Pb car je pense qu'il ne les trouve pas car pas créés !!!??? **/
-.button-disabled {
+.ajout-submit-disabled {
   background-color: hotpink;
   color: white;
 }
 
-.button-enabled {
+.ajout-submit-enabled {
   background-color: greenyellow;
   color: white;
 }
