@@ -604,10 +604,14 @@ h3 {
 #imagePreview {
   display: block;
   height: 100%;
-  /*width: 100%;*/
+  width: 100%;
   object-fit: contain;
 }
-
+/*.cadre-photo .fa-regular.fa-image,
+.cadre-photo #uploadButton,
+.cadre-photo .detailsImg {
+  display: none;
+}*/
 /*.ajout-newPhotoProjet p {
   margin-top: 150px;
   margin-left: 160px;
@@ -624,50 +628,24 @@ input[type="text" i],
   box-shadow: 0px 0px 7px rgb(0, 0, 0, 0.2);
 }
 .fa-regular.fa-image {
-  display: block;
-  justify-content: center;
-  background-color: #e8f1f6;
-  /*position: absolute;*/
-  position: relative;
   opacity: 0.2;
   width: 76px;
   font-size: 76px;
-  bottom: 80px;
-
-  /*margin-left: 170px;
-  margin-top: 20px;
-  box-shadow: 0 0px red;*/
+  margin-bottom: 10px;
 }
 .cadre-photo {
   display: flex;
-  position: relative;
-  margin: auto;
   background-color: #e8f1f6;
   border-radius: 3px;
   height: 169px;
   width: 420px;
-  /*max-width: 100%;*/
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column-reverse;
   justify-content: center;
-  /* top: 230px;
-  left: 250px;*/
-  /* top: 0;
-  left: 0;
   align-items: center;
-  justify-content: center;*/
+  text-align: center;
+  margin-bottom: 20px;
 }
-/*.cadre-photo img {
-  position: relative;
-  object-fit: cover;
-}*/
-/*#imagePreview {
-  object-fit: contain;
-}*/
 
-.detailsImg {
-  margin-top: 40px;
-}
 #uploadButton {
   background-color: #cbd6dc;
   font-size: 14px;
@@ -676,7 +654,12 @@ input[type="text" i],
   height: 36px;
   border-radius: 50px;
   border: none;
-  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.detailsImg {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 .line-bar-ajout-photo {
   height: 1px;
@@ -696,12 +679,14 @@ input#ajout-submit {
 }
 
 /***Pb car je pense qu'il ne les trouve pas car pas créés !!!??? **/
-.ajout-submit-disabled {
+
+/*#ajout-submit .valider-button-disabled*/
+#ajout-submit.valider-button-disabled {
   background-color: hotpink;
   color: white;
 }
 
-.ajout-submit-enabled {
+#ajout-submit.valider-button-enabled {
   background-color: greenyellow;
   color: white;
 }

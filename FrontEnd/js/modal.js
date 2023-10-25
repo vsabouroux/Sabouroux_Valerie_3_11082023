@@ -20,12 +20,13 @@ const photoIcon = document.createElement("i");
 photoIcon.classList.add("fa-regular", "fa-image");
 //const formatImage = document.createElement("p");
 //formatImage.innerText = "jpg, png : 4mo max";
+const detailsImg = document.querySelector(".cadre-photo .detailsImg");
 const uploadButton = document.getElementById("uploadButton");
-
 const imageUploaded = document.querySelector("file");
-
 const imgInput = document.getElementById("img");
-const ajoutSubmitButton = document.getElementById("ajout-submit");
+const imagePreview = document.getElementById("imagePreview");
+const ajoutSubmitButton = document.querySelector(".valider-button");
+
 // Fonction pour fermer la 1ère modale
 function fermerModal() {
   modal.style.display = "none";
@@ -38,6 +39,10 @@ function ouvrirModal() {
 // Fonction pour fermer la 2ème modale
 function fermerModalPhoto() {
   modalAjoutPhoto.style.display = "none";
+  photoIcon.style.display = "block";
+  uploadButton.style.display = "block";
+  detailsImg.style.display = "block";
+  imagePreview.style.display = "none";
   resetForm(); // Appelle la fonction pour réinitialiser le formulaire
 
   // Pour mise à jour du style du bouton lorsque l'utilisateur a téléchargé une photo
@@ -51,6 +56,10 @@ function ouvrirModalPhoto() {
 //Fonction pour revenir à la page précédente
 function revenirPagePrecedente() {
   modal.style.display = "block";
+  photoIcon.style.display = "block";
+  uploadButton.style.display = "block";
+  detailsImg.style.display = "block";
+  imagePreview.style.display = "none";
 }
 
 if (modifierButton) {
@@ -69,7 +78,7 @@ modalcontent.addEventListener("click", (event) => {
   event.stopPropagation();
 });
 
-// Sélection de la deuxième modale
+// Sélection de la DEUXIEME modale
 
 // Gestion de l'événement pour ouvrir la deuxième modale
 ajouterPhotoButton.addEventListener("click", () => {
@@ -95,6 +104,17 @@ imgInput.addEventListener("change", (event) => {
     const imagePreview = document.getElementById("imagePreview");
     imagePreview.src = URL.createObjectURL(selectedFile);
     imagePreview.style.display = "block";
+    // Une image a été sélectionnée, alors l'icône, le bouton et le texte sont masqués
+    photoIcon.style.display = "none";
+    uploadButton.style.display = "none";
+    detailsImg.style.display = "none";
+    imagePreview.style.display = "block";
+  } else {
+    // Aucune image n'a été sélectionnée, alors l'icône, le bouton et le texte restent dans le cadre-photo
+    photoIcon.style.display = "block";
+    uploadButton.style.display = "block";
+    detailsImg.style.display = "block";
+    imagePreview.style.display = "none";
   }
 });
 
@@ -157,18 +177,10 @@ formPhoto.addEventListener("submit", (e) => {
   e.preventDefault();
   envoyerImageAuServeur();
 
-  // Réinitialise le style du bouton
-  form.addEventListener("input", () => {
-    if (form.checkValidity()) {
-      ajoutSubmitButton.classList.add("active");
-      ajoutSubmitButton.disabled = false;
-    } else {
-      ajoutSubmitButton.classList.remove("active");
-      ajoutSubmitButton.disabled = true;
-    }
-  });
-  ajoutSubmitButton.classList.remove("button-enabled");
-  ajoutSubmitButton.classList.add("button-disabled");
+  //Pour que la photo téléchargée prenne la place de l'icône, du bouton +Ajouter photo et du texte
+  //et sinon les éléments restent affichés dans le cadre-photo
+  //un add eventListener sans doute
+
   //Pour réinitialiser le formulaire après envoi des données au serveur
   formPhoto.reset();
 });
@@ -186,3 +198,28 @@ function resetForm() {
   imgInput.value = ""; // Réinitialise le champ de téléchargement de fichier
 }
 resetForm();
+// Changement du style du bouton"valider" quand l'utilisateur a correctement renseigné le formulaire d'ajout de photo
+// Celui-ci passe du gris au vert
+// Fonction pour vérifier les conditions et mettre à jour le style du bouton "Valider"
+const titreInput = document.getElementById("title"); //pourquoi faut-il la remettre ici alors qu'elle a été définie au tout début ?
+function checkFormValidity() {
+  console.log("Bouton avant mise à jour :", ajoutSubmitButton.classList);
+  if (imgInput.files.length > 0 && titreInput.value.trim() !== "") {
+    ajoutSubmitButton.classList.remove("valider-button-disabled");
+    ajoutSubmitButton.classList.add("valider-button-enabled");
+    ajoutSubmitButton.disabled = false;
+  } else {
+    ajoutSubmitButton.classList.remove("valider-button-enabled");
+    ajoutSubmitButton.classList.add("valider-button-disabled");
+    ajoutSubmitButton.disabled = true;
+  }
+  console.log("Bouton après mise à jour :", ajoutSubmitButton.classList);
+}
+
+// Écoute des événements "input" sur les champs du formulaire
+imgInput.addEventListener("input", checkFormValidity);
+titreInput.addEventListener("input", checkFormValidity);
+
+// Au chargement de la page, vérifie l'état initial du bouton "Valider"
+checkFormValidity();
+//Mais comment faire,lorsque l'UI revient en arrière ou ferme la 2ème modale pour que le bouton "valider" revienne à son état initial ?
