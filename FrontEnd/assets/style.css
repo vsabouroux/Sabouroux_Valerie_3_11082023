@@ -639,7 +639,7 @@ input[type="text" i],
   border-radius: 3px;
   height: 169px;
   width: 420px;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -678,15 +678,15 @@ input#ajout-submit {
   margin-top: 50px;
 }
 
-/***Pb car je pense qu'il ne les trouve pas car pas créés !!!??? **/
+/***OUF ça marche !!!**/
 
 /*#ajout-submit .valider-button-disabled*/
 #ajout-submit.valider-button-disabled {
-  background-color: hotpink;
+  background-color: #a7a7a7;
   color: white;
 }
 
 #ajout-submit.valider-button-enabled {
-  background-color: greenyellow;
+  background-color: #1d6154;
   color: white;
 }

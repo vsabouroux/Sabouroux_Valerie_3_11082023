@@ -16,8 +16,9 @@ const backArrow = document.getElementById("backArrow");
 // Création de l'icône "image" dans le cadre bleuté de l'ajout photo ça NE FONCTIONNE PAS !!!
 //const cadrePhoto = document.querySelector(".ajout-newPhotoProjet");
 const cadrePhoto = document.querySelector(".cadre-photo");
-const photoIcon = document.createElement("i");
-photoIcon.classList.add("fa-regular", "fa-image");
+const photoIcon = document.querySelector(".fa-regular.fa-image");
+// const photoIcon = document.createElement("i");
+// photoIcon.classList.add("fa-regular", "fa-image");
 //const formatImage = document.createElement("p");
 //formatImage.innerText = "jpg, png : 4mo max";
 const detailsImg = document.querySelector(".cadre-photo .detailsImg");
@@ -91,8 +92,10 @@ ajouterPhotoButton.addEventListener("click", () => {
   //  event.stopPropagation();
   // });
 });
-uploadButton.addEventListener("click", () => {
+uploadButton.addEventListener("click", (e) => {
+  e.preventDefault();
   // Ouvre la boîte de dialogue de sélection de fichiers
+  console.log(imgInput);
   imgInput.click();
 });
 
@@ -171,11 +174,12 @@ function envoyerImageAuServeur() {
       );
     });
 }
-cadrePhoto.appendChild(photoIcon);
+// cadrePhoto.appendChild(photoIcon);
 //cadrePhoto.appendChild(formatImage);
 formPhoto.addEventListener("submit", (e) => {
   e.preventDefault();
   envoyerImageAuServeur();
+  console.log("Je suis passé");
 
   //Pour que la photo téléchargée prenne la place de l'icône, du bouton +Ajouter photo et du texte
   //et sinon les éléments restent affichés dans le cadre-photo
@@ -196,8 +200,10 @@ function resetForm() {
   titreInput.value = "";
   categorieSelect.selectedIndex = 0;
   imgInput.value = ""; // Réinitialise le champ de téléchargement de fichier
+
+  disabledBtnSubmit();
 }
-resetForm();
+// resetForm();
 // Changement du style du bouton"valider" quand l'utilisateur a correctement renseigné le formulaire d'ajout de photo
 // Celui-ci passe du gris au vert
 // Fonction pour vérifier les conditions et mettre à jour le style du bouton "Valider"
@@ -209,11 +215,15 @@ function checkFormValidity() {
     ajoutSubmitButton.classList.add("valider-button-enabled");
     ajoutSubmitButton.disabled = false;
   } else {
-    ajoutSubmitButton.classList.remove("valider-button-enabled");
-    ajoutSubmitButton.classList.add("valider-button-disabled");
-    ajoutSubmitButton.disabled = true;
+    disabledBtnSubmit();
   }
   console.log("Bouton après mise à jour :", ajoutSubmitButton.classList);
+}
+
+function disabledBtnSubmit() {
+  ajoutSubmitButton.classList.remove("valider-button-enabled");
+  ajoutSubmitButton.classList.add("valider-button-disabled");
+  ajoutSubmitButton.disabled = true;
 }
 
 // Écoute des événements "input" sur les champs du formulaire
@@ -221,5 +231,5 @@ imgInput.addEventListener("input", checkFormValidity);
 titreInput.addEventListener("input", checkFormValidity);
 
 // Au chargement de la page, vérifie l'état initial du bouton "Valider"
-checkFormValidity();
+// checkFormValidity();
 //Mais comment faire,lorsque l'UI revient en arrière ou ferme la 2ème modale pour que le bouton "valider" revienne à son état initial ?
