@@ -1,6 +1,7 @@
 let categories;
 
-// récupération des WORKS sur le localhost du BackEnd dans lesquels il y a la catégorie embarquée
+// Récupération des WORKS sur le localhost du BackEnd dans lesquels il y a la catégorie embarquée
+// Fonction "init" permet d'embarquer l'affichage dynamique de la page d'accueil chaque fois que nécessaire
 function init() {
   fetch("http://localhost:5678/api/works")
     .then((response) => response.json())
@@ -20,7 +21,6 @@ function init() {
     });
 }
 init();
-//utilisation await et async pour récupérer les catégories embarquées ds works et attendre les traitements à venir
 
 //Chaque projet "embarque" la CATEGORIE donc idée d'inserer dans la boucle for of l'écoute du clic
 //Gestion des boutons
@@ -147,11 +147,11 @@ function genererProjetsInModal(projets) {
     projetDiv.appendChild(imageElement);
 
     // Création du bouton "éditer" sous la photo mais pas fonctionnel
-    //mainte
-    const editButton = document.createElement("button");
-    editButton.textContent = "éditer";
-    editButton.classList.add("button", "editbutton");
-    projetDiv.appendChild(editButton);
+    //Supprimé car dans la nouvelle version du projet cela n'est plus demandé
+    //const editButton = document.createElement("button");
+    //editButton.textContent = "éditer";
+    //editButton.classList.add("button", "editbutton");
+    //projetDiv.appendChild(editButton);
 
     // Création de l'icône "trash" en haut à droite de l'image
     const trashIcon = document.createElement("i");
@@ -182,11 +182,6 @@ function genererProjetsInModal(projets) {
           },
         };
         fetch(`http://localhost:5678/api/works/${projet.id}`, requestOptions)
-          //method: "DELETE",
-          //  body: chargeUtile,
-          //  headers: { "content-type": "application/json" }, //pour l'instant cela ne fonctionne pas bien car je pense que cela vient du fait que je ne sais pas
-          //encore dire que l'utilisateur qui veut supprimer le projet est bien authorisé à le faire puisque Token renvoyé
-          //est-ce que cette partie devrait être dans la pge login avec la ref au Token ? si oui comment alors faire le lien avec cette pge ?
           .then((response) => {
             if (response.ok) {
               console.log("Le projet a été supprimé avec succès.");
