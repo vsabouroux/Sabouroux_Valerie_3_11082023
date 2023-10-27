@@ -464,12 +464,13 @@ h3 {
 .close,
 .closePhoto {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 30px;
   font-size: 2em;
   font-weight: bold;
   cursor: pointer;
 }
+
 .btnModifier {
   font-size: 14px;
   font-weight: bold;
@@ -510,8 +511,8 @@ h3 {
 
 .trash-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 6px;
+  right: 5px;
   color: white;
   height: 14px;
   background-color: black;
@@ -556,7 +557,9 @@ h3 {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 2em;
+  width: 21px;
+  height: 18px;
+  font-size: 3em;
   cursor: pointer;
 }
 

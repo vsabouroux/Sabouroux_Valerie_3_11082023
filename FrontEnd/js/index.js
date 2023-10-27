@@ -22,9 +22,7 @@ function init() {
 }
 init();
 
-//Chaque projet "embarque" la CATEGORIE donc idée d'inserer dans la boucle for of l'écoute du clic
-//Gestion des boutons
-
+//Fonction pour afficher les WORKS sur page d'accueil depuis l'API
 function genererProjets(projets) {
   const divGallery = document.querySelector(".gallery");
   //let divFiltres = document.querySelector(".filtres");
@@ -64,13 +62,9 @@ function genererProjets(projets) {
 }
 
 function genererCategories(categories, projets) {
-  //console.log(categories);
-  //Gere l'affichage des catégories
-  //const categoryElement = document.createElement("button"); //ce bouton placé ici  affiche autant de boutons que de projets et donc qd on appelle la fonction tous les boutons associés aux projets s'affichent !
-  //categoryElement.innerText = projet.category.name;
-  //genererCategories(categories, works);
+  //Gère l'affichage des catégories
 
-  //Au clic d'un bouton de catégorie, afficher les projets par catégorie
+  //Au clic d'un bouton de catégorie, les projets s'affichent par catégorie
   divFiltres = document.querySelector(".filtres");
   divFiltres.innerHTML = "";
 
@@ -91,7 +85,7 @@ function genererCategories(categories, projets) {
   console.log(categories);
 
   for (const category of categories) {
-    // Création des boutons pour chaque catégorie
+    // Création des boutons pour les 3 autres catégories (objets, appart et resto)
     const btnCategory = document.createElement("button");
 
     btnCategory.innerText = category.name;
@@ -108,12 +102,10 @@ function genererCategories(categories, projets) {
 function createCategorieOption(category, categorieSelect) {
   //pour envoyer les choix de catégories sur la page web pour que l'utilisateur en sélectionne une
 
-  // categories.forEach((category) => {
   const option = document.createElement("option");
   option.value = category.id;
   option.textContent = category.name;
   categorieSelect.appendChild(option);
-  // });
 }
 
 function filterWorks(nameCategory, projets, btn) {
@@ -133,9 +125,7 @@ function filterWorks(nameCategory, projets, btn) {
 
 function genererProjetsInModal(projets) {
   const projetsModal = document.querySelector(".projets-modal");
-  //probleme avec "deleteProjet" ???
-  //const deleteProjet = document.querySelector(".projets-modal");
-  projetsModal.innerHTML = ""; // Efface le contenu précédent de la modal
+  projetsModal.innerHTML = ""; // Efface le contenu précédent de la modale
 
   projets.forEach((projet) => {
     const projetDiv = document.createElement("div");
