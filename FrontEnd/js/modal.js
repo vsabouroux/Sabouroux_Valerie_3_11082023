@@ -45,10 +45,6 @@ function fermerModalPhoto() {
   detailsImg.style.display = "block";
   imagePreview.style.display = "none";
   resetForm(); // Appelle la fonction pour réinitialiser le formulaire
-
-  // Pour mise à jour du style du bouton lorsque l'utilisateur a téléchargé une photo
-  //ajoutSubmitButton.classList.remove("button-disabled");
-  // ajoutSubmitButton.classList.add("button-enabled");
 }
 // Fonction pour ouvrir la 2ème modale
 function ouvrirModalPhoto() {
@@ -64,7 +60,7 @@ function revenirPagePrecedente() {
 }
 
 if (modifierButton) {
-  // Ecoute du click sur bouton "modifier" à côté de "Projets"
+  // Ecoute du click sur bouton "modifier" à côté de "Projets" sur page "loguée"
   modifierButton.addEventListener("click", ouvrirModal);
 }
 

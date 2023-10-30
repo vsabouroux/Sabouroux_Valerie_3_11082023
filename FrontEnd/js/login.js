@@ -2,9 +2,6 @@
 //c'est le serveur qui crée ce token après envoi des infos par l'utilisateur
 
 let form = document.querySelector("form");
-// essai pour donner du style au bouton du login
-//const connexionButton = document.createElement("div");
-//connexionButton.classList.add("connexionButton"); // Ajout d'une classe CSS pour le style
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -39,7 +36,7 @@ form.addEventListener("submit", (event) => {
           window.location.href = "index.html";
           //à partir du moment où il y a un token ds le localStorage alors afficher la barre d'étition et les 2 boutons (new version) pour les modifs sur la page HTML
         } else {
-          // Afficher un message d'erreur
+          // Afficher un message d'erreur si identifiants mal renseignés
           const messageRenvoye = document.querySelector(".message");
           messageRenvoye.innerHTML =
             "L'email et/ou le mot de passe sont incorrects";
@@ -50,9 +47,3 @@ form.addEventListener("submit", (event) => {
       });
   }
 });
-
-//Utilisation des expressions régulières pour décrire le format des chaînes de caractères avec RegExp
-//revoir comment s'utilise regex101.com
-//   let chaine = "test";
-//  let regex = newRegExp ("^[a-z 0-9._-]$");
-//   let resultat = regex.test(chaine);

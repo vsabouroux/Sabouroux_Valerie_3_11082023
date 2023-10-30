@@ -64,7 +64,7 @@ function genererProjets(projets) {
 function genererCategories(categories, projets) {
   //Gère l'affichage des catégories
 
-  //Au clic d'un bouton de catégorie, les projets s'affichent par catégorie
+  //but du code ci-après : au clic d'un bouton de catégorie, les projets s'affichent par catégorie
   divFiltres = document.querySelector(".filtres");
   divFiltres.innerHTML = "";
 
