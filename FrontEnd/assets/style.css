@@ -299,22 +299,7 @@ input#submit-login[type="submit"] {
   background-color: #1d6154;
   color: white;
 }
-/* .btn-tous:hover {
-  background-color: #1d6154;
-  color: white;
-}
-.btn-objets:hover {
-  background-color: #1d6154;
-  color: white;
-}
-.btn-appartements:hover {
-  background-color: #1d6154;
-  color: white;
-}
-.btn-hr:hover {
-  background-color: #1d6154;
-  color: white;
-} */
+
 #portfolio h2 {
   display: flex;
   align-items: center;
@@ -475,7 +460,8 @@ h3 {
   font-size: 14px;
   font-weight: bold;
   padding: 15px 30px;
-  box-shadow: black (0, 0, 0, 0.1);
+  /*box-shadow: (0, 0, 0.1);*/
+  box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 /**style sur  projets dans 1ere modale**/
@@ -681,8 +667,6 @@ input#ajout-submit {
   font-weight: bold;
   margin-top: 50px;
 }
-
-/***OUF ça marche !!!**/
 
 /*#ajout-submit .valider-button-disabled*/
 #ajout-submit.valider-button-disabled {
