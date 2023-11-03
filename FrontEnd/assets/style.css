@@ -262,7 +262,7 @@ input#submit-login[type="submit"] {
   width: 80%;
 }
 
-#introduction article {
+#introduction div {
   flex: 1;
 }
 #introduction h2 {
