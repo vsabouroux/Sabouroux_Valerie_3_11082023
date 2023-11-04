@@ -12,7 +12,7 @@ form.addEventListener("submit", (event) => {
   if (baliseEmail.value && baliseMotDePasse.value) {
     console.log("Le champ e-mail est rempli");
 
-    //construction charge utile pour envoyer requête qui permettra d'ajouter les identifiants du user ds l'API
+    //construction charge utile (un objet) pour envoyer requête qui permettra d'ajouter les identifiants du user ds l'API
     const identifiants = {
       email: baliseEmail.value,
       password: baliseMotDePasse.value,

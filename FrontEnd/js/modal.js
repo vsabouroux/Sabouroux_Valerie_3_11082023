@@ -1,6 +1,4 @@
 // Ajout de l'événement click sur le bouton "modifier"de la page accueil "loguée" pour ouvrir la modale
-// Récupération des éléments DOM, MAIS est-ce que l'on peut ls récupérer lorsqu'ils sont créés depuis js ?
-//const buttonModifier = document.querySelector(".modifier-button");
 const modifierButton = document.querySelector(".modifier-button");
 const modal = document.getElementById("modal");
 const closeBtn = document.querySelector(".close");
@@ -9,18 +7,14 @@ const modalAjoutPhoto = document.getElementById("modal-ajout-photo");
 //ajouterPhotoButton concerne le bouton sur la 1ère modale
 const ajouterPhotoButton = document.querySelector(".add-new-projet");
 const formPhoto = document.getElementById("formPhoto"); //pour réinitialiser le formulaire
+
 //Concerne la 2ème modale
 //Pour ouvrir, fermer et revenir en arrière sur la 2ème modale
 const closeBtnPhoto = document.querySelector(".closePhoto");
 const backArrow = document.getElementById("backArrow");
-// Création de l'icône "image" dans le cadre bleuté de l'ajout photo ça NE FONCTIONNE PAS !!!
-//const cadrePhoto = document.querySelector(".ajout-newPhotoProjet");
+
 const cadrePhoto = document.querySelector(".cadre-photo");
 const photoIcon = document.querySelector(".fa-regular.fa-image");
-// const photoIcon = document.createElement("i");
-// photoIcon.classList.add("fa-regular", "fa-image");
-//const formatImage = document.createElement("p");
-//formatImage.innerText = "jpg, png : 4mo max";
 const detailsImg = document.querySelector(".cadre-photo .detailsImg");
 const uploadButton = document.getElementById("uploadButton");
 const imageUploaded = document.querySelector("file");
@@ -84,9 +78,6 @@ ajouterPhotoButton.addEventListener("click", () => {
   //Gestion de l'événement pour fermer la  modale
   closeBtn.addEventListener("click", fermerModal);
   fermerModal();
-  //modalAjoutPhoto.addEventListener("click", (event) => {
-  //  event.stopPropagation();
-  // });
 });
 uploadButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -170,16 +161,10 @@ function envoyerImageAuServeur() {
       );
     });
 }
-// cadrePhoto.appendChild(photoIcon);
-//cadrePhoto.appendChild(formatImage);
+
 formPhoto.addEventListener("submit", (e) => {
   e.preventDefault();
   envoyerImageAuServeur();
-  console.log("Je suis passé");
-
-  //Pour que la photo téléchargée prenne la place de l'icône, du bouton +Ajouter photo et du texte
-  //et sinon les éléments restent affichés dans le cadre-photo
-  //un add eventListener sans doute
 
   //Pour réinitialiser le formulaire après envoi des données au serveur
   formPhoto.reset();
@@ -199,11 +184,10 @@ function resetForm() {
 
   disabledBtnSubmit();
 }
-// resetForm();
 // Changement du style du bouton"valider" quand l'utilisateur a correctement renseigné le formulaire d'ajout de photo
 // Celui-ci passe du gris au vert
 // Fonction pour vérifier les conditions et mettre à jour le style du bouton "Valider"
-const titreInput = document.getElementById("title"); //pourquoi faut-il la remettre ici alors qu'elle a été définie au tout début ?
+const titreInput = document.getElementById("title");
 function checkFormValidity() {
   console.log("Bouton avant mise à jour :", ajoutSubmitButton.classList);
   if (imgInput.files.length > 0 && titreInput.value.trim() !== "") {
@@ -227,5 +211,3 @@ imgInput.addEventListener("input", checkFormValidity);
 titreInput.addEventListener("input", checkFormValidity);
 
 // Au chargement de la page, vérifie l'état initial du bouton "Valider"
-// checkFormValidity();
-//Mais comment faire,lorsque l'UI revient en arrière ou ferme la 2ème modale pour que le bouton "valider" revienne à son état initial ?
