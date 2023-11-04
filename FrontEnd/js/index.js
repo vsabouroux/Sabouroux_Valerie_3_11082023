@@ -62,9 +62,8 @@ function genererProjets(projets) {
 }
 
 function genererCategories(categories, projets) {
-  //Gère l'affichage des catégories
+  //Gère l'affichage des catégories en fonction du click de l'UI
 
-  //but du code ci-après : au clic d'un bouton de catégorie, les projets s'affichent par catégorie
   divFiltres = document.querySelector(".filtres");
   divFiltres.innerHTML = "";
 
@@ -107,7 +106,7 @@ function createCategorieOption(category, categorieSelect) {
   option.textContent = category.name;
   categorieSelect.appendChild(option);
 }
-
+//Pour filtrer les projets en fonction du click de l'UI sur un bouton de catégorie
 function filterWorks(nameCategory, projets, btn) {
   const exActiveFilter = document.querySelector(".filtres button.active");
   exActiveFilter.classList.remove("active");
